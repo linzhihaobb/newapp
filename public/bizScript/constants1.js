@@ -31,7 +31,7 @@ var menuList = [{
 {
     "id": "casePage",
     "name": "方案展示",
-    "href": "/api/case",
+    "href": "/case",
     "active": false,
     "target": "_self",
     "type": 0
