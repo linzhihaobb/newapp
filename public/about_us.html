@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="keywords" content="">
+		<meta name="description" content="">
+		<link rel="stylesheet" type="text/css" href="/css/lib.css">
+		<link rel="stylesheet" type="text/css" href="/css/base.css">
+		<link rel="stylesheet" type="text/css" href="/css/style.css">
+		<script type="text/javascript" src="/js/jquery-1.11.3.min.js"></script>
+		<script type="text/javascript" src="/js/vue.min.js"></script>
+		<script type="text/javascript" src="/bizScript/footer.js"></script>
+		<script type="text/javascript" src="/bizScript/header.js"></script>
+		<script type="text/javascript" src="/bizScript/constants.js"></script>
+		<script>
+			$(function() {
+				if(!$("#mindex").length) {
+					$('body').addClass('sscreen')
+				}
+			})
+		</script>
+		<script type="text/javascript" src="/js/org.min.js" data-main="baseMain"></script>
+		<script type="text/javascript" src="/js/form.min.js"></script>
+		<title>关于我们</title>
+
+	</head>
+
+	<body>
+	<div id="app">
+		<div class="bodyMask"> </div>
+		<div id="header" class="index_nav">
+
+			<div class="content">
+				<a href="index.html" id="logo"><img src="/images/logo.png" height="60" /></a>
+				<ul id="nav">
+					<menu-item :item="item" :index="index" v-for="(item, index) in menuList"></menu-item>
+				</ul>
+				<div class="clear"></div>
+			</div>
+			<a id="headSHBtn" href="#"><i class="fa fa-bars"></i></a>
+		</div>
+		<div id="sitecontent">
+
+			<div id="newsPage" class="npagePage Pagenews">
+				<div id="banner">
+					<div style="background-image:url(/images/about_us-banner.jpg);"></div>
+				</div>
+				<div class="content">
+					<div class="header">
+						<p class="title">关于我们</p>
+						<p class="subtitle">ABOUT US</p>
+					</div>
+					<div id="category">
+						<a href="about_us.html" class="active">公司简介</a>
+						<a href="about_history.html">公司历程</a>
+						<a href="news.html">达人动态</a>
+						<a href="contact.html">联系地址</a>
+					</div>
+					<div id="about_us">
+                        <p>漳州市兴业电脑有限公司成立于1994年，是一家专业从事现代教育装备规划、设计、研发、制造、安装以及售后服务于一体的高新技术企业。</p>
+                        <p><br></p>
+                        <p> 位于漳州市金峰工业园区，办公楼及厂房占地二十余亩，经过二十多年的发展，成为以软硬件产品研发、设计、生产、总包、服务为一体的创新新型多元化的企业。</p>
+                        <p><br></p>
+                        <p>旗下子公司漳州知书达人自动化办公设备有限公司，成立于2015年，专注于研发生产适用于现代教学的集常规教学及网络学习于一体的全能型学生课桌，附合国家标准的高端讲台桌、现代档案装具、多功能会议桌等等产品。</p>
+                        <p><br></p>
+                    </div>
+					<div class="clear"></div>
+				</div>
+			</div>
+		</div>
+		<!-- 底部区域 -->
+		<side-footer :footer="footer"></side-footer>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var vm = new Vue({
+			el:'#app',
+			components: {
+		    	'side-footer': footDiv
+		  	},
+		  	data : {
+		  		footer:{
+		  			'corpname':FOOTER.CORPNAME,
+			  		'qqcode':FOOTER.QQCODE,
+			  		'telno':FOOTER.TELNO,
+			  		'corpaddress':FOOTER.CORPADDRESS,
+			  		'zipcode':FOOTER.ZIPCODE,
+			  		'mobileno':FOOTER.MOBILENO,
+			  		'faxno':FOOTER.FAXNO,
+			  		'corpemail':FOOTER.CORPEMAIL,
+			  		'sideauthor':FOOTER.SIDEAUTHOR,
+			  		'siderecord':FOOTER.SIDERECORD
+		  		},
+		  		menuList:menuList
+		  	}
+		})
+	</script>
+</html>

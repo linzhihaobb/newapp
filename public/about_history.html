@@ -1,0 +1,134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="keywords" content="">
+		<meta name="description" content="">
+		<link rel="stylesheet" type="text/css" href="/css/lib.css">
+		<link rel="stylesheet" type="text/css" href="/css/base.css">
+		<link rel="stylesheet" type="text/css" href="/css/style.css">
+		<script type="text/javascript" src="/js/jquery-1.11.3.min.js"></script>
+		<script type="text/javascript" src="/js/vue.min.js"></script>
+		<script type="text/javascript" src="/bizScript/footer.js"></script>
+		<script type="text/javascript" src="/bizScript/header.js"></script>
+		<script type="text/javascript" src="/bizScript/constants.js"></script>
+		<script>
+			$(function() {
+				if(!$("#mindex").length) {
+					$('body').addClass('sscreen')
+				}
+			})
+		</script>
+		<script type="text/javascript" src="/statics/js/org.min.js" data-main="baseMain"></script>
+		<script type="text/javascript" src="/statics/js/form.min.js"></script>
+		<title>公司历程</title>
+
+	</head>
+
+	<body>
+	<div id="app">
+		<div class="bodyMask"> </div>
+		<div id="header" class="index_nav">
+
+			<div class="content">
+				<a href="index.html" id="logo"><img src="/images/logo.png" height="60" /></a>
+				<ul id="nav">
+					<menu-item :item="item" :index="index" v-for="(item, index) in menuList"></menu-item>
+				</ul>
+				<div class="clear"></div>
+			</div>
+			<a id="headSHBtn" href="#"><i class="fa fa-bars"></i></a>
+		</div>
+		<div id="sitecontent">
+
+			<div id="newsPage" class="npagePage Pagenews">
+				<div id="banner">
+					<div style="background-image:url(/images/about_us-banner.jpg);"></div>
+				</div>
+				<div class="content">
+					<div class="header">
+						<p class="title">关于我们</p>
+						<p class="subtitle">ABOUT US</p>
+					</div>
+					<div id="category">
+						<a href="about_us.html">公司简介</a>
+						<a href="about_history.html" class="active">公司历程</a>
+						<a href="news.html">达人动态</a>
+						<a href="contact.html">联系地址</a>
+					</div>
+                    <div class="history">
+						<div class="breaking">
+							<dl class="">
+								<dt>
+									<p class="p3">2018年</p>
+								</dt>
+								<dd>
+									<p class="p1">2018.02</p>
+									<p class="p2">希沃教育研究院挂牌成立</p>
+									<img src="/images/1523585742.jpg" alt="">
+								</dd>
+								<dt>
+									<p class="p3">2017年</p>
+							    </dt>
+								<dd>
+									<p class="p1">2017.12</p>
+									<p class="p2">据奥维数据报告显示，2017年希沃全国市场占有率位居行业前列</p>
+									<img src="/images/1523585742.jpg" alt="">
+								</dd>
+								<dd>
+									<p class="p1">2017.12</p>
+									<p class="p2">希沃冠名第73届全国教育装备展示会</p>
+									<img src="/images/1523585742.jpg" alt="">
+								</dd>
+								<dd>
+									<p class="p1">2017.12</p>
+									<p class="p2">希沃荣获2017年度“智慧教育显示设备影响力品牌奖”、“智慧校园创新奖”、“企业社会责任奖”</p>
+									<img src="/images/1523585742.jpg" alt="">
+								</dd>
+								<dd>
+									<p class="p1">2017.11</p>
+									<p class="p2">希沃防眩光钢化玻璃技术获得第十九届中国专利奖</p>
+									<img src="/images/1523585742.jpg" alt="">
+								</dd>
+								<dd>
+									<p class="p1">2017.07</p>
+									<p class="p2">被广东省经济委员会认定为“广东省省级企业技术中心”</p>
+									<img src="/images/1523585742.jpg" alt="">
+								</dd>
+							</dl>
+						</div>
+                    </div>
+					<div class="clear"></div>
+				</div>
+			</div>
+		</div>
+		<!-- 底部区域 -->
+		<side-footer :footer="footer"></side-footer>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var vm = new Vue({
+			el:'#app',
+			components: {
+		    	'side-footer': footDiv
+		  	},
+		  	data : {
+		  		footer:{
+		  			'corpname':FOOTER.CORPNAME,
+			  		'qqcode':FOOTER.QQCODE,
+			  		'telno':FOOTER.TELNO,
+			  		'corpaddress':FOOTER.CORPADDRESS,
+			  		'zipcode':FOOTER.ZIPCODE,
+			  		'mobileno':FOOTER.MOBILENO,
+			  		'faxno':FOOTER.FAXNO,
+			  		'corpemail':FOOTER.CORPEMAIL,
+			  		'sideauthor':FOOTER.SIDEAUTHOR,
+			  		'siderecord':FOOTER.SIDERECORD
+		  		},
+		  		menuList:menuList
+		  	}
+		})
+	</script>
+</html>

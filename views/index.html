@@ -1,0 +1,302 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="keywords" content="">
+		<meta name="description" content="">
+		<link rel="stylesheet" type="text/css" href="/css/lib.css">
+		<link rel="stylesheet" type="text/css" href="/css/base.css">
+		<link rel="stylesheet" type="text/css" href="/css/style.css">
+		<script type="text/javascript" src="/js/jquery-1.11.3.min.js"></script>
+
+		<script>
+			$(function() {
+				if(!$("#mindex").length) {
+					$('body').addClass('sscreen');
+				}
+			})
+		</script>
+		<script type="text/javascript" src="/js/org.min.js" data-main="indexMain"></script>
+		<script type="text/javascript" src="/js/form.min.js"></script>
+		<script type="text/javascript" src="/js/vue.min.js"></script>
+		<script type="text/javascript" src="/bizScript/footer.js"></script>
+		<script type="text/javascript" src="/bizScript/header.js"></script>
+		<script type="text/javascript" src="/bizScript/productList.js"></script>
+		<script type="text/javascript" src="/bizScript/constants.js"></script>
+		<title>兴业知书达人首页</title>
+
+	</head>
+
+	<body>
+	<div id="app">
+		<div class="bodyMask"> </div>
+		<side-header :menuList="menuList"></side-header>
+		<div id="header" class="index_nav">
+
+			<div class="content">
+				<a href="/" id="logo"><img src="/images/logo.png" height="60" /></a>
+				<ul id="nav">
+				<menu-item :item="item" :index="index" v-for="(item, index) in menuList"></menu-item>
+				</ul>
+				<div class="clear"></div>
+			</div>
+			<a id="headSHBtn" href="#"><i class="fa fa-bars"></i></a>
+		</div>
+		<div id="sitecontent">
+			<div id="indexPage">
+				<div id="mslider" class="module">
+					<ul class="slider" data-options-height="650" data-options-auto="0" data-options-mode="0" data-options-pause="4" data-options-ease="ease-out">
+                  {{each list show index}}
+						<li style="background-image:url(/upload/slideshow/{{show.link}})">
+							<div id="tempImage_0"></div>
+							<img style="display:none" src="/upload/slideshow/{{show.link}}" alt="" />
+							<a target="_blank">
+								<div>
+									<p class="title ellipsis"></p>
+								</div>
+								<div class="sliderArrow fa fa-angle-down"></div>
+							</a>
+						</li>
+						{{/each}}
+						<!-- <li style="background-image:url(/images/banner1.jpg)"> -->
+							<!-- <div id="tempImage_1"></div><img style="display:none" src="/images/banner1.jpg" alt="" />
+							<a target="_blank">
+								<div>
+									<p class="title ellipsis"></p>
+								</div>
+								<div class="sliderArrow fa fa-angle-down"></div>
+							</a> -->
+						<!-- </li> -->
+					</ul>
+				</div>
+				<div id="mindex" data-options-ease="Expo.easeInOut" data-options-speed="1" data-options-sscreen="0"></div>
+				<div id="mservice" class="module">
+					<div class="content layoutnone">
+						<div class="header wow fw" data-wow-delay=".1s">
+							<p class="title">方案展示</p>
+							<p class="subtitle">Plan</p>
+						</div>
+						<div class="module-content fw" id="servicelist">
+							<div class="wrapper">
+								<ul class="content_list" data-options-sliders="3" data-options-margin="0" data-options-ease="1" data-options-speed="1">
+									<li id="serviceitem_0" class="serviceitem wow">
+										<a href="#" target="_blank">
+											<p class="service_img"><img src="/images/zhjs.jpg" width="320" height="120" alt="智慧教室" /></p>
+											<div class="service_info">
+												<p class="title">智慧教室</p>
+												<p class="description">以交互智能平板为核心设备，配套移动授课终端、视频展台、反馈器等相关周边产品，增强了教学展示效果，丰富...</p>
+											</div>
+										</a>
+										<a href="#" target="_blank" class="details">more<i class="fa fa-angle-right"></i></a>
+									</li>
+									<li id="serviceitem_1" class="serviceitem wow">
+										<a href="#" target="_blank">
+											<p class="service_img"><img src="/images/znxy.jpg" width="320" height="120" alt="智能校园" /></p>
+											<div class="service_info">
+												<p class="title">智能校园</p>
+												<p class="description">以智能助教平台为核心，配套扫描仪，辅以教师办公电脑，即可实现学生常规测试成绩智能批改、学生考试数据... </p>
+											</div>
+										</a>
+										<a href="#" target="_blank" class="details">more<i class="fa fa-angle-right"></i></a>
+									</li>
+									<li id="serviceitem_2" class="serviceitem wow">
+										<a href="#" target="_blank">
+											<p class="service_img"><img src="/images/znxq.jpg" width="320" height="120" alt="智囊学区" /></p>
+											<div class="service_info">
+												<p class="title">智囊学区</p>
+												<p class="description">针对提升教师信息技术在实际中的应用能力，通过线上与线下培训，结合实践案例，推进信息技术在教学过程中的普遍应用... </p>
+											</div>
+										</a>
+										<a href="#" target="_blank" class="details">more<i class="fa fa-angle-right"></i></a>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<div class="clear"></div>
+						<a href="plan.html" class="more wow">MORE<i class="fa fa-angle-right"></i></a>
+					</div>
+				</div>
+				<div id="mproject" class="module">
+					<div class="content layoutnone">
+						<div class="header wow">
+							<p class="title">产品展示</p>
+							<p class="subtitle">Product</p>
+						</div>
+						<div id="category" class="hide wow">
+							<a href="#">交互智能</a>
+							<a href="#">应用软件</a>
+							<a href="#">周边产品</a>
+						</div>
+						<!--yyLayout masonry-->
+						<div class="module-content" id="projectlist">
+							<div class="projectSubList" id="projectSubList_">
+								<div class="projectSubHeader">
+									<p class="title"></p>
+									<p class="subtitle"></p>
+								</div>
+								<product-list :product="product"></product-list>
+								<!--wrapper-->
+							</div>
+							<!--projectSubList-->
+							<div class="clear"></div>
+							<a href="/product.html?type=all&page=1" class="more wow">MORE<i class="fa fa-angle-right"></i></a>
+						</div>
+						<!--projectlist-->
+						<div class="clear"></div>
+					</div>
+				</div>
+				<!--project-->
+				<div id="mpage" class="module bgShow" style="background-image:url(/images/case-bj.jpg);">
+					<div class="bgmask"></div>
+					<div class="content">
+						<div class="module-content">
+							<div class="wrapper">
+								<ul class="slider one">
+									<li>
+										<div class="header wow" data-wow-delay=".2s">
+											<p class="title">优秀案例故事</p>
+											<p class="subtitle">Excellent Case Story</p>
+										</div>
+										<div class="des-wrap">
+											<p class="description wow" data-wow-delay=".3s">活跃的课堂氛围更容易使学生对学习产生兴趣，进而提高教学质量。课上开启班级优化大师置顶光荣榜，可即时对学生的课堂行为进行评价，名次在排行榜上即时刷新，能很好帮助激发学生好胜心；随机抽选功能让每位同学都可能被抽到，促使全班同学随时保持专注。课堂上抽选小组，小组成员必须轮流上台答题，分数最高的同学将成为本周的小组长...
+											</p>
+										</div>
+										<a href="#" class="more wow" data-wow-delay=".5s">MORE<i class="fa fa-angle-right"></i></a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id="mnews" class="module bgShow">
+					<div class="bgmask"></div>
+					<div class="content layoutnone">
+						<div class="header wow">
+							<p class="title">达人动态</p>
+							<p class="subtitle">NEWS</p>
+						</div>
+						<div class="module-content" id="newslist">
+							<div class="wrapper">
+								<ul class="content_list" data-options-sliders="5" data-options-margin="40" data-options-ease="1" data-options-speed="0.5" data-options-mode="horizontal" data-options-wheel="0">
+									<li id="newsitem_0" class="wow newstitem left">
+										<a class="newscontent" target="_blank" href="#">
+											<div class="news_wrapper">
+												<div class="newsbody">
+													<p class="date"><span class="md">2018<span>-</span></span><span class="year">05-22</span></p>
+													<p class="title">以赛促学：嵩明“希沃杯”课件大赛圆满落幕</p>
+													<div class="separator"></div>
+													<p class="description">5月2日，为期三周的嵩明县“希沃杯”多媒体交互式应用软件培训暨课件制作大赛圆满落幕。赛事的举办 ...</p>
+												</div>
+											</div>
+											<div class="newsimg" style="background-image:url(/images/1504768933199.jpg)"></div>
+										</a>
+										<a href="#" target="_blank" class="details">more<i class="fa fa-angle-right"></i></a>
+									</li>
+									<li id="newsitem_1" class="wow newstitem right">
+										<a class="newscontent" target="_blank" href="#">
+											<div class="news_wrapper">
+												<div class="newsbody">
+													<p class="date"><span class="md">2018<span>-</span></span><span class="year">05-22</span></p>
+													<p class="title">希沃协办全国小学数字化学习示范校联盟活动</p>
+													<div class="separator"></div>
+													<p class="description">近日，希沃作为协办单位亮相全国小学数字化学习示范校联盟活动。来自全国近300名老师齐聚一堂。本次活动，希沃携...</p>
+												</div>
+											</div>
+										</a>
+										<a href="#" target="_blank" class="details">more<i class="fa fa-angle-right"></i></a>
+									</li>
+									<li id="newsitem_2" class="wow newstitem left">
+										<a class="newscontent" target="_blank" href="#">
+											<div class="news_wrapper">
+												<div class="newsbody">
+													<p class="date"><span class="md">2018<span>-</span></span><span class="year">05-22</span></p>
+													<p class="title">南昌市“希沃杯”赛前培训火热进行</p>
+													<div class="separator"></div>
+													<p class="description">为推动教育信息化迈入2.0时代，实现“三全两高一大”的目标，近日，南昌市开展 ...</p>
+												</div>
+											</div>
+										</a>
+										<a href="#" target="_blank" class="details">more<i class="fa fa-angle-right"></i></a>
+									</li>
+									<li id="newsitem_3" class="wow newstitem right">
+										<a class="newscontent" target="_blank" href="#">
+											<div class="news_wrapper">
+												<div class="newsbody">
+													<p class="date"><span class="md">2018<span>-</span></span><span class="year">05-20</span></p>
+													<p class="title">希沃易课堂案例，“人人通”助力教育信息化2.0</p>
+													<div class="separator"></div>
+													<p class="description">随着教育信息化的深入推进，教师和学生的信息化教与学的综合素养都在逐步攀升，前几年被“神话”的平板课堂已经褪去面纱，逐步迈向常态化 ...</p>
+												</div>
+											</div>
+										</a>
+										<a href="#" target="_blank" class="details">more<i class="fa fa-angle-right"></i></a>
+									</li>
+									<li id="newsitem_4" class="wow newstitem left">
+										<a class="newscontent" target="_blank" href="#">
+											<div class="news_wrapper">
+												<div class="newsbody">
+													<p class="date"><span class="md">2018<span>-</span></span><span class="year">05-18</span></p>
+													<p class="title">直击第74届教装展，希沃数字校园解决方案受热捧</p>
+													<div class="separator"></div>
+													<p class="description">5月11日，第74届中国教育装备展示会在四川成都盛大开幕。本届展会，希沃延续“发现教学小数据”主题...</p>
+												</div>
+											</div>
+										</a>
+										<a href="#" target="_blank" class="details">more<i class="fa fa-angle-right"></i></a>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<div class="clear"></div>
+						<a href="#" class="more wow">MORE<i class="fa fa-angle-right"></i></a>
+						<div style="height:0">&nbsp;</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 底部区域 -->
+		<side-footer :footer="footer"></side-footer>
+	</div>
+
+	<!-- <script type="text/javascript">
+		$(function() {
+			$("#mslider li video").each(function(index, element) {
+				element.play();
+			});
+		})
+	</script> -->
+	<script>
+			var vm = new Vue({
+				el:'#app',
+				components: {
+					'side-footer': footDiv,
+					'menu-item': menuItem
+				  },
+				  data : {
+					  footer:{
+						  'corpname':FOOTER.CORPNAME,
+						  'qqcode':FOOTER.QQCODE,
+						  'telno':FOOTER.TELNO,
+						  'corpaddress':FOOTER.CORPADDRESS,
+						  'zipcode':FOOTER.ZIPCODE,
+						  'mobileno':FOOTER.MOBILENO,
+						  'faxno':FOOTER.FAXNO,
+						  'corpemail':FOOTER.CORPEMAIL,
+						  'sideauthor':FOOTER.SIDEAUTHOR,
+						  'siderecord':FOOTER.SIDERECORD
+					  },
+					  menuList:menuList,
+					  product:{
+						  'sliders':true,
+						  'list':productList
+					  }
+				  }
+			})
+	
+		</script>
+	</body>
+
+	
+</html>

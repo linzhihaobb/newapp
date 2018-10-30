@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<link rel="stylesheet" type="text/css" href="/css/lib.css">
+	<link rel="stylesheet" type="text/css" href="/css/base.css">
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
+	<script type="text/javascript" src="/js/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="/js/vue.min.js"></script>
+	<script type="text/javascript" src="/bizScript/footer.js"></script>
+	<script type="text/javascript" src="/bizScript/header.js"></script>
+	<script type="text/javascript" src="/bizScript/productList.js"></script>
+	<script type="text/javascript" src="/bizScript/constants2.js"></script>
+	<script>
+		$(function () {
+			if (!$("#mindex").length) {
+				$('body').addClass('sscreen')
+			}
+		})
+	</script>
+	<script type="text/javascript" src="/js/org.min.js" data-main="baseMain"></script>
+	<script type="text/javascript" src="/js/form.min.js"></script>
+	<title>产品</title>
+
+</head>
+
+<body>
+	<div id="app">
+		<div class="bodyMask"> </div>
+		<div id="header" class="index_nav">
+
+			<div class="content">
+				<a href="index.html" id="logo"><img src="/images/logo.png" height="60" /></a>
+				<ul id="nav">
+					<menu-item :item="item" :index="index" v-for="(item, index) in menuList"></menu-item>
+				</ul>
+				<div class="clear"></div>
+			</div>
+			<a id="headSHBtn" href="#"><i class="fa fa-bars"></i></a>
+		</div>
+		<div id="sitecontent">
+
+			<div class="npagePage Pageanli" id="mproject">
+				<div id="banner">
+					<div style="background-image:url(/images/product-banner.jpg);"></div>
+				</div>
+				<div class="content">
+					<div class="header" id="plheader">
+						<p class="title">产品展示</p>
+						<p class="subtitle">Product</p>
+					</div>
+					<ul id="category">
+						<li>
+							<a href="product.html?type=all&page=1">全部</a>
+						</li>
+						<li>
+							<a href="product.html?type=yjcp&page=1">硬件产品</a>
+						</li>
+						<li>
+							<a href="product.html?type=yyrj&page=1">应用软件</a>
+						</li>
+						<li>
+							<a href="product.html?type=zbcp&page=1">周边产品</a>
+						</li>
+					</ul>
+					<product-list :product="product"></product-list>
+					<div class="clear"></div>
+					<div id="pages">
+						<p style="font-size:20px">暂无此类产品</p>
+					
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 底部区域 -->
+		<side-footer :footer="footer"></side-footer>
+	</div>
+</body>
+<script type="text/javascript">
+	
+	var vm = new Vue({
+		el: '#app',
+		components: {
+			'side-footer': footDiv
+		},
+		data: {
+			footer: {
+				'corpname': FOOTER.CORPNAME,
+				'qqcode': FOOTER.QQCODE,
+				'telno': FOOTER.TELNO,
+				'corpaddress': FOOTER.CORPADDRESS,
+				'zipcode': FOOTER.ZIPCODE,
+				'mobileno': FOOTER.MOBILENO,
+				'faxno': FOOTER.FAXNO,
+				'corpemail': FOOTER.CORPEMAIL,
+				'sideauthor': FOOTER.SIDEAUTHOR,
+				'siderecord': FOOTER.SIDERECORD
+			},
+			menuList: menuList,
+			product: {
+				'sliders': false,
+				'list': productList
+			}
+		}
+	})
+
+
+
+	if(pagecount.length==0){
+	}else{
+		document.getElementById('pages').innerHTML = strHtml
+		var a = document.querySelectorAll('#pages a')
+		for (i = 0; i < a.length; i++) {
+		a[i].style.backgroundColor = "rgb(255,210,0)"
+		a[i].style.color = "white"
+	}
+	a[id.page - 1].style.backgroundColor = "orange"
+	a[id.page - 1].style.color = "white"
+	}
+	
+</script>
+
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="keywords" content="">
+		<meta name="description" content="">
+		<link rel="stylesheet" type="text/css" href="/css/lib.css">
+		<link rel="stylesheet" type="text/css" href="/css/base.css">
+		<link rel="stylesheet" type="text/css" href="/css/style.css">
+		<script type="text/javascript" src="/js/jquery-1.11.3.min.js"></script>
+		<script type="text/javascript" src="/js/vue.min.js"></script>
+		<script type="text/javascript" src="/bizScript/footer.js"></script>
+		<script type="text/javascript" src="/bizScript/header.js"></script>
+		<script type="text/javascript" src="/bizScript/constants.js"></script>
+		<script>
+			$(function() {
+				if(!$("#mindex").length) {
+					$('body').addClass('sscreen')
+				}
+			})
+		</script>
+		<script type="text/javascript" src="/js/org.min.js" data-main="baseMain"></script>
+		<script type="text/javascript" src="/js/form.min.js"></script>
+		<title>案例展示</title>
+
+	</head>
+
+	<body>
+	<div id="app">
+		<div class="bodyMask"> </div>
+		<div id="header" class="index_nav">
+			<div class="content">
+				<a href="index.html" id="logo"><img src="/images/logo.png" height="60" /></a>
+				<ul id="nav">
+					<menu-item :item="item" :index="index" v-for="(item, index) in menuList"></menu-item>
+				</ul>
+				<div class="clear"></div>
+			</div>
+			<a id="headSHBtn" href="#"><i class="fa fa-bars"></i></a>
+		</div>
+		<div id="sitecontent">
+
+			<div class="npagePage Pageservice">
+				<div id="banner">
+					<div style="background-image:url(/images/case-banner.jpg);"></div>
+				</div>
+				<div class="content">
+					<div class="header">
+						<p class="title">案例展示</p>
+						<p class="subtitle">CASE</p>
+					</div>
+					<div id="servicelist">
+						<ul class="wrap">
+							<li class="serviceitem">
+								<a href="news_detail.html" target="_blank">
+									<p class="service_img"><img src="/images/case-pic1.jpg" width="320" height="120" /></p>
+									<div class="service_info">
+										<p class="title">信息化教学战略化，随手抓一节课都是典范</p>
+										<p class="description">对华南师范大学附属外国语学校（以下简称“华师附外”）早有耳闻，但真正踏进这所被称为“最具综合实力名校”是在今年初夏的一个早晨。绿树成荫、满庭芬芳、中外古今建筑特色相融的校园令人流连...</p>
+									</div>
+								</a>
+							</li>
+							<li class="serviceitem">
+								<a href="news_detail.html" target="_blank">
+									<p class="service_img"><img src="/images/case-pic2.jpg" width="320" height="120" /></p>
+									<div class="service_info">
+										<p class="title">看老牌名校如何演绎信息化教学传奇！</p>
+										<p class="description">“征蓬出汉塞，归雁入胡天。大漠孤烟直，长河落日圆……”走在华中师范大学第一附属中学的校道上，听着铿锵有力的朗朗书声，不由想起其校歌所唱之言——“迎着朝阳，沐浴霞光。追求卓越，永争第一！ ”... </p>
+									</div>
+								</a>
+							</li>
+							<li class="serviceitem">
+								<a href="news_detail.html" target="_blank">
+									<p class="service_img"><img src="/images/case-pic3.jpg" width="320" height="120" /></p>
+									<div class="service_info">
+										<p class="title">信息化教学为百年名校减负增效</p>
+										<p class="description">千年雁塔，百年附中。陕西师范大学附属中学——这座历经沧桑的百年名校静坐在大慈恩寺的西南角，庄严而不失活力，见证了无数精英人才的进进出出。... </p>
+									</div>
+								</a>
+							</li>
+						</ul>
+						<div class="clear"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 底部区域 -->
+		<side-footer :footer="footer"></side-footer>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var vm = new Vue({
+			el:'#app',
+			components: {
+		    	'side-footer': footDiv
+		  	},
+		  	data : {
+		  		footer:{
+		  			'corpname':FOOTER.CORPNAME,
+			  		'qqcode':FOOTER.QQCODE,
+			  		'telno':FOOTER.TELNO,
+			  		'corpaddress':FOOTER.CORPADDRESS,
+			  		'zipcode':FOOTER.ZIPCODE,
+			  		'mobileno':FOOTER.MOBILENO,
+			  		'faxno':FOOTER.FAXNO,
+			  		'corpemail':FOOTER.CORPEMAIL,
+			  		'sideauthor':FOOTER.SIDEAUTHOR,
+			  		'siderecord':FOOTER.SIDERECORD
+		  		},
+		  		menuList:menuList
+		  	}
+		})
+	</script>
+</html>

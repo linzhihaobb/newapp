@@ -1,0 +1,344 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="keywords" content="">
+		<meta name="description" content="">
+		<link rel="stylesheet" type="text/css" href="/css/lib.css">
+		<link rel="stylesheet" type="text/css" href="/css/base.css">
+		<link rel="stylesheet" type="text/css" href="/css/style.css">
+		<script type="text/javascript" src="/js/jquery-1.11.3.min.js"></script>
+		<script type="text/javascript" src="/js/vue.min.js"></script>
+		<script type="text/javascript" src="/bizScript/footer.js"></script>
+		<script type="text/javascript" src="/bizScript/header.js"></script>
+		<script type="text/javascript" src="/bizScript/constants.js"></script>
+		<script>
+			$(function() {
+				if(!$("#mindex").length) {
+					$('body').addClass('sscreen')
+				}
+			})
+		</script>
+		<script type="text/javascript" src="/js/org.min.js" data-main="baseMain"></script>
+		<script type="text/javascript" src="/js/form.min.js"></script>
+		<script type="text/javascript" src="/js/jquery.SuperSlide.2.1.1.js"></script>
+		<title>方案展示</title>
+
+	</head>
+
+	<body>
+	<div id="app">
+		<div class="bodyMask"> </div>
+		<div id="header" class="index_nav">
+
+			<div class="content">
+				<a href="index.html" id="logo"><img src="/images/logo.png" height="60" /></a>
+				<ul id="nav">
+					<menu-item :item="item" :index="index" v-for="(item, index) in menuList"></menu-item>
+				</ul>
+				<div class="clear"></div>
+			</div>
+			<a id="headSHBtn" href="#"><i class="fa fa-bars"></i></a>
+		</div>
+		<div id="sitecontent">
+			<div class="npagePage Pageanli" id="mproject">
+				<div id="banner">
+					<div style="background-image:url(/images/plan-banner.jpg);"></div>
+				</div>
+				<div class="outBox">
+					<div class="hd">
+						<ul><li>智慧教室</li><li>智能校园</li><li>智囊学区</li></ul>
+					</div>
+					<div class="bd">
+
+						<!-- inBox S -->
+						<div class="inBox">
+							<div class="inHd">
+								<ul><li>互动课堂</li><li>智慧课堂</li><li>双师课堂</li></ul>
+							</div>
+							<div class="inBd">
+								<ul>
+									<li>
+										<div class="plan_img"><img src="/images/zhjs.jpg" width="500" height="320" /></div>
+										<div class="plan_info">
+											<p class="plan_title">互动课堂·简介</p>
+											<p class="plan_subtitle">希沃互动课堂方案，打破传统单向教学模式，结合多种互动教学工具，实现双向高效互动式教学。方案以交互智能平板为核心设备，配套移动授课终端、视频展台、反馈器等相关周边产品，增强了教学展示效果，丰富了教学展示手段，让学生参与到课堂中，真正实现互动式课堂。</p>
+										</div>
+									</li>
+									<li>
+										<div class="plan_img"><img src="/images/znxy.jpg" width="500" height="320" /></div>
+										<div class="plan_info">
+											<p class="plan_title">互动课堂·场景</p>
+											<p class="plan_subtitle">课堂，不再是老师单向的知识传授，而是师生双向的互动反馈。配合交互智能平板，老师可以一边展示多媒体课件内容，一边在黑板上板书讲解；老师可以用移动授课终端远程操控智能平板，将学生作业拍照上传到智能平板上点评；老师可以通过视频展台把学生试卷、作业传到交互智能平板，进行讲解；老师还可以进行学生行为评分，发起签到、单选题、多选题、抢答、抽选等活动，学生通过反馈器及时参与，让课堂更加高效。</p>
+										</div>
+
+									</li>
+									<li>
+										<div class="plan_img"><img src="/images/znxq.jpg" width="500" height="320" /></div>
+										<div class="plan_info">
+											<p class="plan_title">互动课堂·软件组成</p>
+											<p class="plan_subtitle">①兼容Android/IOS设备，无线互联，超过10米传输距离； ②大小屏课件同步显示，移动控制播放； ③移动实物展台功能，文件无线传输到智能平板。</p>
+										</div>
+										</a>
+									</li>
+								</ul>
+								<ul>
+									<li>
+										<div class="plan_img"><img src="/images/zhjs.jpg" width="500" height="320" /></div>
+										<div class="plan_info">
+											<p class="plan_title">互动课堂·简介</p>
+											<p class="plan_subtitle">希沃互动课堂方案，打破传统单向教学模式，结合多种互动教学工具，实现双向高效互动式教学。方案以交互智能平板为核心设备，配套移动授课终端、视频展台、反馈器等相关周边产品，增强了教学展示效果，丰富了教学展示手段，让学生参与到课堂中，真正实现互动式课堂。</p>
+										</div>
+									</li>
+									<li>
+										<div class="plan_img"><img src="/images/znxy.jpg" width="500" height="320" /></div>
+										<div class="plan_info">
+											<p class="plan_title">互动课堂·场景</p>
+											<p class="plan_subtitle">课堂，不再是老师单向的知识传授，而是师生双向的互动反馈。配合交互智能平板，老师可以一边展示多媒体课件内容，一边在黑板上板书讲解；老师可以用移动授课终端远程操控智能平板，将学生作业拍照上传到智能平板上点评；老师可以通过视频展台把学生试卷、作业传到交互智能平板，进行讲解；老师还可以进行学生行为评分，发起签到、单选题、多选题、抢答、抽选等活动，学生通过反馈器及时参与，让课堂更加高效。</p>
+										</div>
+
+									</li>
+									<li>
+										<div class="plan_img"><img src="/images/znxq.jpg" width="500" height="320" /></div>
+										<div class="plan_info">
+											<p class="plan_title">互动课堂·软件组成</p>
+											<p class="plan_subtitle">①兼容Android/IOS设备，无线互联，超过10米传输距离； ②大小屏课件同步显示，移动控制播放； ③移动实物展台功能，文件无线传输到智能平板。</p>
+										</div>
+										</a>
+									</li>
+								</ul>
+								<ul>
+									<li>
+										<div class="plan_img"><img src="/images/zhjs.jpg" width="500" height="320" /></div>
+										<div class="plan_info">
+											<p class="plan_title">互动课堂·简介</p>
+											<p class="plan_subtitle">希沃互动课堂方案，打破传统单向教学模式，结合多种互动教学工具，实现双向高效互动式教学。方案以交互智能平板为核心设备，配套移动授课终端、视频展台、反馈器等相关周边产品，增强了教学展示效果，丰富了教学展示手段，让学生参与到课堂中，真正实现互动式课堂。</p>
+										</div>
+									</li>
+									<li>
+										<div class="plan_img"><img src="/images/znxy.jpg" width="500" height="320" /></div>
+										<div class="plan_info">
+											<p class="plan_title">互动课堂·场景</p>
+											<p class="plan_subtitle">课堂，不再是老师单向的知识传授，而是师生双向的互动反馈。配合交互智能平板，老师可以一边展示多媒体课件内容，一边在黑板上板书讲解；老师可以用移动授课终端远程操控智能平板，将学生作业拍照上传到智能平板上点评；老师可以通过视频展台把学生试卷、作业传到交互智能平板，进行讲解；老师还可以进行学生行为评分，发起签到、单选题、多选题、抢答、抽选等活动，学生通过反馈器及时参与，让课堂更加高效。</p>
+										</div>
+
+									</li>
+									<li>
+										<div class="plan_img"><img src="/images/znxq.jpg" width="500" height="320" /></div>
+										<div class="plan_info">
+											<p class="plan_title">互动课堂·软件组成</p>
+											<p class="plan_subtitle">①兼容Android/IOS设备，无线互联，超过10米传输距离； ②大小屏课件同步显示，移动控制播放； ③移动实物展台功能，文件无线传输到智能平板。</p>
+										</div>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+
+						<!-- inBox S -->
+						<div class="inBox">
+							<div class="inHd">
+								<ul><li>应用决策</li><li>智能班牌</li><li>录播评课</li></ul>
+							</div>
+							<div class="inBd">
+								<ul>
+									<li>
+										<div class="plan_img"><img src="/images/zhjs.jpg" width="500" height="320" /></div>
+										<div class="plan_info">
+											<p class="plan_title">互动课堂·简介</p>
+											<p class="plan_subtitle">希沃互动课堂方案，打破传统单向教学模式，结合多种互动教学工具，实现双向高效互动式教学。方案以交互智能平板为核心设备，配套移动授课终端、视频展台、反馈器等相关周边产品，增强了教学展示效果，丰富了教学展示手段，让学生参与到课堂中，真正实现互动式课堂。</p>
+										</div>
+									</li>
+									<li>
+										<div class="plan_img"><img src="/images/znxy.jpg" width="500" height="320" /></div>
+										<div class="plan_info">
+											<p class="plan_title">互动课堂·场景</p>
+											<p class="plan_subtitle">课堂，不再是老师单向的知识传授，而是师生双向的互动反馈。配合交互智能平板，老师可以一边展示多媒体课件内容，一边在黑板上板书讲解；老师可以用移动授课终端远程操控智能平板，将学生作业拍照上传到智能平板上点评；老师可以通过视频展台把学生试卷、作业传到交互智能平板，进行讲解；老师还可以进行学生行为评分，发起签到、单选题、多选题、抢答、抽选等活动，学生通过反馈器及时参与，让课堂更加高效。</p>
+										</div>
+
+									</li>
+									<li>
+										<div class="plan_img"><img src="/images/znxq.jpg" width="500" height="320" /></div>
+										<div class="plan_info">
+											<p class="plan_title">互动课堂·软件组成</p>
+											<p class="plan_subtitle">①兼容Android/IOS设备，无线互联，超过10米传输距离； ②大小屏课件同步显示，移动控制播放； ③移动实物展台功能，文件无线传输到智能平板。</p>
+										</div>
+										</a>
+									</li>
+								</ul>
+								<ul>
+									<li>
+										<div class="plan_img"><img src="/images/zhjs.jpg" width="500" height="320" /></div>
+										<div class="plan_info">
+											<p class="plan_title">互动课堂·简介</p>
+											<p class="plan_subtitle">希沃互动课堂方案，打破传统单向教学模式，结合多种互动教学工具，实现双向高效互动式教学。方案以交互智能平板为核心设备，配套移动授课终端、视频展台、反馈器等相关周边产品，增强了教学展示效果，丰富了教学展示手段，让学生参与到课堂中，真正实现互动式课堂。</p>
+										</div>
+									</li>
+									<li>
+										<div class="plan_img"><img src="/images/znxy.jpg" width="500" height="320" /></div>
+										<div class="plan_info">
+											<p class="plan_title">互动课堂·场景</p>
+											<p class="plan_subtitle">课堂，不再是老师单向的知识传授，而是师生双向的互动反馈。配合交互智能平板，老师可以一边展示多媒体课件内容，一边在黑板上板书讲解；老师可以用移动授课终端远程操控智能平板，将学生作业拍照上传到智能平板上点评；老师可以通过视频展台把学生试卷、作业传到交互智能平板，进行讲解；老师还可以进行学生行为评分，发起签到、单选题、多选题、抢答、抽选等活动，学生通过反馈器及时参与，让课堂更加高效。</p>
+										</div>
+
+									</li>
+									<li>
+										<div class="plan_img"><img src="/images/znxq.jpg" width="500" height="320" /></div>
+										<div class="plan_info">
+											<p class="plan_title">互动课堂·软件组成</p>
+											<p class="plan_subtitle">①兼容Android/IOS设备，无线互联，超过10米传输距离； ②大小屏课件同步显示，移动控制播放； ③移动实物展台功能，文件无线传输到智能平板。</p>
+										</div>
+										</a>
+									</li>
+								</ul>
+								<ul>
+									<li>
+										<div class="plan_img"><img src="/images/zhjs.jpg" width="500" height="320" /></div>
+										<div class="plan_info">
+											<p class="plan_title">互动课堂·简介</p>
+											<p class="plan_subtitle">希沃互动课堂方案，打破传统单向教学模式，结合多种互动教学工具，实现双向高效互动式教学。方案以交互智能平板为核心设备，配套移动授课终端、视频展台、反馈器等相关周边产品，增强了教学展示效果，丰富了教学展示手段，让学生参与到课堂中，真正实现互动式课堂。</p>
+										</div>
+									</li>
+									<li>
+										<div class="plan_img"><img src="/images/znxy.jpg" width="500" height="320" /></div>
+										<div class="plan_info">
+											<p class="plan_title">互动课堂·场景</p>
+											<p class="plan_subtitle">课堂，不再是老师单向的知识传授，而是师生双向的互动反馈。配合交互智能平板，老师可以一边展示多媒体课件内容，一边在黑板上板书讲解；老师可以用移动授课终端远程操控智能平板，将学生作业拍照上传到智能平板上点评；老师可以通过视频展台把学生试卷、作业传到交互智能平板，进行讲解；老师还可以进行学生行为评分，发起签到、单选题、多选题、抢答、抽选等活动，学生通过反馈器及时参与，让课堂更加高效。</p>
+										</div>
+
+									</li>
+									<li>
+										<div class="plan_img"><img src="/images/znxq.jpg" width="500" height="320" /></div>
+										<div class="plan_info">
+											<p class="plan_title">互动课堂·软件组成</p>
+											<p class="plan_subtitle">①兼容Android/IOS设备，无线互联，超过10米传输距离； ②大小屏课件同步显示，移动控制播放； ③移动实物展台功能，文件无线传输到智能平板。</p>
+										</div>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+
+						<!-- inBox S -->
+						<div class="inBox">
+							<div class="inHd">
+								<ul><li>教育信息化应用数据看板</li><li>教师培训提升</li><li>区域信息管理</li></ul>
+							</div>
+							<div class="inBd">
+								<ul>
+									<li>
+										<div class="plan_img"><img src="/images/zhjs.jpg" width="500" height="320" /></div>
+										<div class="plan_info">
+											<p class="plan_title">互动课堂·简介</p>
+											<p class="plan_subtitle">希沃互动课堂方案，打破传统单向教学模式，结合多种互动教学工具，实现双向高效互动式教学。方案以交互智能平板为核心设备，配套移动授课终端、视频展台、反馈器等相关周边产品，增强了教学展示效果，丰富了教学展示手段，让学生参与到课堂中，真正实现互动式课堂。</p>
+										</div>
+									</li>
+									<li>
+										<div class="plan_img"><img src="/images/znxy.jpg" width="500" height="320" /></div>
+										<div class="plan_info">
+											<p class="plan_title">互动课堂·场景</p>
+											<p class="plan_subtitle">课堂，不再是老师单向的知识传授，而是师生双向的互动反馈。配合交互智能平板，老师可以一边展示多媒体课件内容，一边在黑板上板书讲解；老师可以用移动授课终端远程操控智能平板，将学生作业拍照上传到智能平板上点评；老师可以通过视频展台把学生试卷、作业传到交互智能平板，进行讲解；老师还可以进行学生行为评分，发起签到、单选题、多选题、抢答、抽选等活动，学生通过反馈器及时参与，让课堂更加高效。</p>
+										</div>
+
+									</li>
+									<li>
+										<div class="plan_img"><img src="/images/znxq.jpg" width="500" height="320" /></div>
+										<div class="plan_info">
+											<p class="plan_title">互动课堂·软件组成</p>
+											<p class="plan_subtitle">①兼容Android/IOS设备，无线互联，超过10米传输距离； ②大小屏课件同步显示，移动控制播放； ③移动实物展台功能，文件无线传输到智能平板。</p>
+										</div>
+										</a>
+									</li>
+								</ul>
+								<ul>
+									<li>
+										<div class="plan_img"><img src="/images/zhjs.jpg" width="500" height="320" /></div>
+										<div class="plan_info">
+											<p class="plan_title">互动课堂·简介</p>
+											<p class="plan_subtitle">希沃互动课堂方案，打破传统单向教学模式，结合多种互动教学工具，实现双向高效互动式教学。方案以交互智能平板为核心设备，配套移动授课终端、视频展台、反馈器等相关周边产品，增强了教学展示效果，丰富了教学展示手段，让学生参与到课堂中，真正实现互动式课堂。</p>
+										</div>
+									</li>
+									<li>
+										<div class="plan_img"><img src="/images/znxy.jpg" width="500" height="320" /></div>
+										<div class="plan_info">
+											<p class="plan_title">互动课堂·场景</p>
+											<p class="plan_subtitle">课堂，不再是老师单向的知识传授，而是师生双向的互动反馈。配合交互智能平板，老师可以一边展示多媒体课件内容，一边在黑板上板书讲解；老师可以用移动授课终端远程操控智能平板，将学生作业拍照上传到智能平板上点评；老师可以通过视频展台把学生试卷、作业传到交互智能平板，进行讲解；老师还可以进行学生行为评分，发起签到、单选题、多选题、抢答、抽选等活动，学生通过反馈器及时参与，让课堂更加高效。</p>
+										</div>
+
+									</li>
+									<li>
+										<div class="plan_img"><img src="/images/znxq.jpg" width="500" height="320" /></div>
+										<div class="plan_info">
+											<p class="plan_title">互动课堂·软件组成</p>
+											<p class="plan_subtitle">①兼容Android/IOS设备，无线互联，超过10米传输距离； ②大小屏课件同步显示，移动控制播放； ③移动实物展台功能，文件无线传输到智能平板。</p>
+										</div>
+										</a>
+									</li>
+								</ul>
+								<ul>
+									<li>
+										<div class="plan_img"><img src="/images/zhjs.jpg" width="500" height="320" /></div>
+										<div class="plan_info">
+											<p class="plan_title">互动课堂·简介</p>
+											<p class="plan_subtitle">希沃互动课堂方案，打破传统单向教学模式，结合多种互动教学工具，实现双向高效互动式教学。方案以交互智能平板为核心设备，配套移动授课终端、视频展台、反馈器等相关周边产品，增强了教学展示效果，丰富了教学展示手段，让学生参与到课堂中，真正实现互动式课堂。</p>
+										</div>
+									</li>
+									<li>
+										<div class="plan_img"><img src="/images/znxy.jpg" width="500" height="320" /></div>
+										<div class="plan_info">
+											<p class="plan_title">互动课堂·场景</p>
+											<p class="plan_subtitle">课堂，不再是老师单向的知识传授，而是师生双向的互动反馈。配合交互智能平板，老师可以一边展示多媒体课件内容，一边在黑板上板书讲解；老师可以用移动授课终端远程操控智能平板，将学生作业拍照上传到智能平板上点评；老师可以通过视频展台把学生试卷、作业传到交互智能平板，进行讲解；老师还可以进行学生行为评分，发起签到、单选题、多选题、抢答、抽选等活动，学生通过反馈器及时参与，让课堂更加高效。</p>
+										</div>
+
+									</li>
+									<li>
+										<div class="plan_img"><img src="/images/znxq.jpg" width="500" height="320" /></div>
+										<div class="plan_info">
+											<p class="plan_title">互动课堂·软件组成</p>
+											<p class="plan_subtitle">①兼容Android/IOS设备，无线互联，超过10米传输距离； ②大小屏课件同步显示，移动控制播放； ③移动实物展台功能，文件无线传输到智能平板。</p>
+										</div>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+
+
+					</div><!-- bd E -->
+				</div>
+				<script type="text/javascript">
+                    jQuery(".inBox").slide({ titCell:".inHd li",mainCell:".inBd" });
+                    jQuery(".outBox").slide({ effect:"left" });
+				</script>
+			</div>
+		</div>
+		<!-- 底部区域 -->
+		<side-footer :footer="footer"></side-footer>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var vm = new Vue({
+			el:'#app',
+			components: {
+		    	'side-footer': footDiv
+		  	},
+		  	data : {
+		  		footer:{
+		  			'corpname':FOOTER.CORPNAME,
+			  		'qqcode':FOOTER.QQCODE,
+			  		'telno':FOOTER.TELNO,
+			  		'corpaddress':FOOTER.CORPADDRESS,
+			  		'zipcode':FOOTER.ZIPCODE,
+			  		'mobileno':FOOTER.MOBILENO,
+			  		'faxno':FOOTER.FAXNO,
+			  		'corpemail':FOOTER.CORPEMAIL,
+			  		'sideauthor':FOOTER.SIDEAUTHOR,
+			  		'siderecord':FOOTER.SIDERECORD
+		  		},
+		  		menuList:menuList
+		  	}
+		})
+	</script>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="keywords" content="">
+		<meta name="description" content="">
+		<link rel="stylesheet" type="text/css" href="/css/lib.css">
+		<link rel="stylesheet" type="text/css" href="/css/base.css">
+		<link rel="stylesheet" type="text/css" href="/css/style.css">
+		<script type="text/javascript" src="/js/jquery-1.11.3.min.js"></script>
+		<script type="text/javascript" src="/js/vue.min.js"></script>
+		<script type="text/javascript" src="/bizScript/footer.js"></script>
+		<script type="text/javascript" src="/bizScript/header.js"></script>
+		<script type="text/javascript" src="/bizScript/constants.js"></script>
+		<script>
+			$(function() {
+				if(!$("#mindex").length) {
+					$('body').addClass('sscreen')
+				}
+			})
+		</script>
+		<script type="text/javascript" src="/js/org.min.js" data-main="baseMain"></script>
+		<script type="text/javascript" src="/js/form.min.js"></script>
+		<title>内页详情（案例动态通用）</title>
+
+	</head>
+
+	<body class="nobanner">
+	<div id="app">
+		<div class="bodyMask"> </div>
+		<div id="header" class="index_nav">
+
+			<div class="content">
+				<a href="index.html" id="logo"><img src="/images/logo.png" height="60" /></a>
+				<ul id="nav">
+					<menu-item :item="item" :index="index" v-for="(item, index) in menuList"></menu-item>
+				</ul>
+				<div class="clear"></div>
+			</div>
+			<a id="headSHBtn" href="#"><i class="fa fa-bars"></i></a>
+		</div>
+		<div id="sitecontent">
+
+			<div class="npagePage newsl">
+				<div class="content">
+					<div class="header fw">
+						<p class="title">希沃与英特尔达成战略合作，携手推进数字校园建设</p>
+						<p class="subtitle">2018年05月11日</p>
+					</div>
+					<div class="fw postbody">
+						<p>5月11日，希沃与英特尔在成都召开的第74届中国教育装备展示会上宣布达成战略合作，并举行了战略合作备忘录签约仪式。双方将在数字校园建设上展开更为广泛而深入的合作，携手为教育行业提供更优的解决方案。</p>
+						<p><br /></p>
+						<p>“希沃很早就与英特尔有了全方位的合作，是英特尔IOT事业部全球的核心合作伙伴。这次的战略合作开启了希沃与英特尔更深入，强与强之间的合作和交流，我们会更加着力于云计算、人工智能等前沿领域的深度合作，相信双方战略合作的签署会加速英特尔的技术在中国教育领域的深化应用，推动中国教育的进一步发展。”视源股份未来教育集团总裁黄明寒说道。</p>
+						<p><br /></p>
+						<p style="text-align: center;"><img src="/images/news-pic.jpg" width="" vspace="0" border="0" height="" /></p>
+						<p><br /></p>
+						<p><br /></p>
+						<p>对此，英特尔中国区销售总经理王稚聪也表示，“首先，英特尔非常高兴和希沃能够签署这样的战略合作协议。一直以来，英特尔非常看重底层技术标准的建设以及产品的创新，我们希望通过和希沃这样领先教育品牌的战略合作，加深双方在先进技术上的交流探讨，全方位地推动信息化和IT技术在中国市场的普及和技术提升，依托技术的手段更好地提升教育教学。”英特尔中国区销售总经理王稚聪说道。</p>
+						<p><br /></p>
+						<p>希沃与英特尔一直保持着良好的合作。创立早期希沃便开始了与英特尔在CPU产品上的深度合作，并一直延续至今；2010年，希沃与英特尔几乎同时提出了模块化设计的理念，帮助后续英特尔建立OPS设计规范奠定了基础；到2016年希沃成为了国内为数不多的“英特尔OPS认证合作伙伴”，双方的合作始终紧密稳固。</p>
+						<p><br /></p>
+						<p>在未来，双方将会在OPS、人工智能、云计算、云存储、服务器等领域继续展开从技术到市场，从硬件到软件的更为深入的合作，携手为教育行业提供更优的解决方案。</p>
+						<p><br /></p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 底部区域 -->
+		<side-footer :footer="footer"></side-footer>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var vm = new Vue({
+			el:'#app',
+			components: {
+		    	'side-footer': footDiv
+		  	},
+		  	data : {
+		  		footer:{
+		  			'corpname':FOOTER.CORPNAME,
+			  		'qqcode':FOOTER.QQCODE,
+			  		'telno':FOOTER.TELNO,
+			  		'corpaddress':FOOTER.CORPADDRESS,
+			  		'zipcode':FOOTER.ZIPCODE,
+			  		'mobileno':FOOTER.MOBILENO,
+			  		'faxno':FOOTER.FAXNO,
+			  		'corpemail':FOOTER.CORPEMAIL,
+			  		'sideauthor':FOOTER.SIDEAUTHOR,
+			  		'siderecord':FOOTER.SIDERECORD
+		  		},
+		  		menuList:menuList
+		  	}
+		})
+	</script>
+</html>

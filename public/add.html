@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>添加产品</title>
+    <link rel="stylesheet" type="text/css" href="/css/lib.css">
+    <link rel="stylesheet" type="text/css" href="/css/base.css">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <style>
+        #chooseImg img {
+            width: 150px;
+            height: 100px;
+            margin-right: 50px;
+        }
+
+
+
+        #chooseImg input {
+            display: none
+        }
+.clr{
+    clear: both;
+}
+    </style>
+</head>
+
+<body>
+    <div class="container">
+            <a class="btn btn-primary" href="/home#/product" style="margin-bottom:10px">返回</a>
+        <form action="/admin/product/add" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="type">产品类型</label>
+                <select class="form-control" name="type" id="type">
+                    <option value="yjcp">硬件产品</option>
+                    <option value="yyrj">应用软件</option>
+                    <option value="zbcp">周边产品</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="title">名称</label>
+                <input type="text" name="title" id="title" required class="form-control" placeholder="请输入">
+            </div>
+            <div class="form-group">
+                <label for="remark">简介</label>
+                <input type="text" name="remark" id="remark" required class="form-control" placeholder="请输入">
+            </div>
+
+            <div class="form-group">
+                <label for="img">图片</label>
+                <div id="chooseImg">
+                    <img src="/images/add.png" alt="">
+                    <input type="file" name="img" id="img">
+                    <img src="/images/add.png" alt="">
+                    <input type="file" name="img" id="img">
+                    <img src="/images/add.png" alt="">
+                    <input type="file" name="img" id="img">
+                </div>
+
+            </div>
+            
+            <div class="clr"></div>
+            <br>    
+            <div class="form-group">
+                <label for="subTitle">产品介绍</label>
+                <input type="text" name="subTitle" required id="subTitle" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="content">功能介绍</label>
+                <textarea name="content" id="content" required cols="30" rows="10" class="form-control" style="resize: none;"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary" onclick="cheack(event)">上传</button>
+        </form>
+    </div>
+
+
+    <script src="https://cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script>
+        function addEvent() {
+            var inputImg = document.getElementById('chooseImg').getElementsByTagName('img')
+            for (var i = 0; i < inputImg.length; i++) {
+                inputImg[i].onclick = function () {
+                    this.nextElementSibling.click()
+                }
+            }
+            var inputs = document.getElementById('chooseImg').getElementsByTagName('input')
+            for (var i = 0; i < inputs.length; i++) {
+                inputs[i].onchange = function () {
+                    var file = this.files[0]
+                    this.previousElementSibling.src = URL.createObjectURL(file)
+                }
+            }
+        }
+        addEvent()
+        function cheack(e){
+            if(document.querySelector("input[type=file]").value==''){
+                e.preventDefault();
+                alert('请选择图片')
+            }else{
+              
+            }
+
+        }
+    </script>
+</body>
+
+</html>
