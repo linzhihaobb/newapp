@@ -475,7 +475,7 @@ app.get("/api/v1/productorData", function(req, res, next) {
   });
 });
 // 渲染case。html
-app.get("/api/case", function(req, res) {
+app.get("/case", function(req, res) {
   Caseshow.find(function(err, data) {
     if (err) {
       console.log(err);
@@ -527,7 +527,7 @@ app.get("/product", function(req, res) {
   });
 });
 // 渲染case-list.html
-app.get("/case", function(req, res) {
+app.get("/apicase", function(req, res) {
   Caseshow.find(function(err, data) {
     res.render("case-list", {
       caseshow: data.map(function(item) {
