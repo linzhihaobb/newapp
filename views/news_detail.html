@@ -46,24 +46,13 @@
 			<div class="npagePage newsl">
 				<div class="content">
 					<div class="header fw">
-						<p class="title">希沃与英特尔达成战略合作，携手推进数字校园建设</p>
-						<p class="subtitle">2018年05月11日</p>
+						<p class="title">{{caseshow.title}}</p>
+						<p class="subtitle">{{caseshow.date}}</p>
 					</div>
-					<div class="fw postbody">
-						<p>5月11日，希沃与英特尔在成都召开的第74届中国教育装备展示会上宣布达成战略合作，并举行了战略合作备忘录签约仪式。双方将在数字校园建设上展开更为广泛而深入的合作，携手为教育行业提供更优的解决方案。</p>
-						<p><br /></p>
-						<p>“希沃很早就与英特尔有了全方位的合作，是英特尔IOT事业部全球的核心合作伙伴。这次的战略合作开启了希沃与英特尔更深入，强与强之间的合作和交流，我们会更加着力于云计算、人工智能等前沿领域的深度合作，相信双方战略合作的签署会加速英特尔的技术在中国教育领域的深化应用，推动中国教育的进一步发展。”视源股份未来教育集团总裁黄明寒说道。</p>
-						<p><br /></p>
-						<p style="text-align: center;"><img src="/images/news-pic.jpg" width="" vspace="0" border="0" height="" /></p>
-						<p><br /></p>
-						<p><br /></p>
-						<p>对此，英特尔中国区销售总经理王稚聪也表示，“首先，英特尔非常高兴和希沃能够签署这样的战略合作协议。一直以来，英特尔非常看重底层技术标准的建设以及产品的创新，我们希望通过和希沃这样领先教育品牌的战略合作，加深双方在先进技术上的交流探讨，全方位地推动信息化和IT技术在中国市场的普及和技术提升，依托技术的手段更好地提升教育教学。”英特尔中国区销售总经理王稚聪说道。</p>
-						<p><br /></p>
-						<p>希沃与英特尔一直保持着良好的合作。创立早期希沃便开始了与英特尔在CPU产品上的深度合作，并一直延续至今；2010年，希沃与英特尔几乎同时提出了模块化设计的理念，帮助后续英特尔建立OPS设计规范奠定了基础；到2016年希沃成为了国内为数不多的“英特尔OPS认证合作伙伴”，双方的合作始终紧密稳固。</p>
-						<p><br /></p>
-						<p>在未来，双方将会在OPS、人工智能、云计算、云存储、服务器等领域继续展开从技术到市场，从硬件到软件的更为深入的合作，携手为教育行业提供更优的解决方案。</p>
-						<p><br /></p>
+					<div class="fw postbody" id="content">
+						
 					</div>
+					<input id='contents' type='hidden' value='{{caseshow.content}}' />
 				</div>
 			</div>
 		</div>
@@ -72,6 +61,11 @@
 		</div>
 	</body>
 	<script type="text/javascript">
+	$(function(){
+$("#content").html($("#contents").val())
+
+
+	})
 		var vm = new Vue({
 			el:'#app',
 			components: {
