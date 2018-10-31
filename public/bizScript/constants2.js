@@ -31,7 +31,7 @@ var menuList = [{
     {
         "id": "casePage",
         "name": "方案展示",
-        "href": "/case",
+        "href": "/plan",
         "active": false,
         "target": "_self",
         "type": 0
@@ -39,14 +39,14 @@ var menuList = [{
     {
         "id": "productPage",
         "name": "产品展示",
-        "href": "product.html?type=all&page=1",
+        "href": "/products?type=all&page=1",
         "active": false,
         "target": "_self",
         "type": 0,
         "list": [{
                 "id": "znjhPage",
                 "name": "硬件产品",
-                "href": "product.html?type=yjcp&page=1",
+                "href": "/products?type=yjcp&page=1",
                 "active": false,
                 "target": "_self",
                 "type": 1
@@ -54,7 +54,7 @@ var menuList = [{
             {
                 "id": "yyrjPage",
                 "name": "应用软件",
-                "href": "product.html?type=yyrj&page=1",
+                "href": "/products?type=yyrj&page=1",
                 "active": false,
                 "target": "_self",
                 "type": 1
@@ -62,7 +62,7 @@ var menuList = [{
             {
                 "id": "zbcpPage",
                 "name": "周边产品",
-                "href": "product.html?type=zbcp&page=1",
+                "href": "/products?type=zbcp&page=1",
                 "active": false,
                 "target": "_self",
                 "type": 1
@@ -72,7 +72,7 @@ var menuList = [{
     {
         "id": "fwalPage",
         "name": "服务案例",
-        "href": "case.html",
+        "href": "/case",
         "active": false,
         "target": "_self",
         "type": 0
@@ -80,7 +80,7 @@ var menuList = [{
     {
         "id": "aboutusPage",
         "name": "关于我们",
-        "href": "about_us.html",
+        "href": "/about",
         "active": false,
         "target": "_self",
         "type": 0
@@ -133,10 +133,9 @@ var pagecount = (function () {
     xhr.send()
     return result
 })()
-console.log(pagecount.length)
 var strHtml = ''
 for (i = 0; i < Math.ceil( pagecount.length / 6); i++) {
-    strHtml += `<a href="product.html?type=${id.type}&page=${i+1}">${i+1}</a>`
+    strHtml += `<a href="/products?type=${id.type}&page=${i+1}">${i+1}</a>`
 }
 
 

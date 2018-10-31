@@ -70,10 +70,29 @@ var caseshowSchema = Schema(
     title: String,
     content: String,
     remark: String,
-    date: String
+    date: String,
+    year:String,
+    month:String,
+    day:String
   },
   {
     collection: "Caseshows"
+  }
+);
+var newsshowSchema = Schema(
+  {
+    id: String,
+    imgSrc: String,
+    title: String,
+    content: String,
+    remark: String,
+    date: String,
+    year:String,
+    month:String,
+    day:String
+  },
+  {
+    collection: "Newsshows"
   }
 );
 // 根据创建的用户数据库模型创建用户模型
@@ -81,6 +100,7 @@ var caseshowSchema = Schema(
 var Product = mongoose.model("Product", productSchema);
 var Slideshow = mongoose.model("Slideshow", slideshowSchema);
 var Caseshow = mongoose.model("Case", caseshowSchema);
+var Newsshow = mongoose.model("News", newsshowSchema);
 // app.use(express.static(path.join(__dirname, "views")))
 app.use(express.static(path.join(__dirname, "public")));
 app.use(
@@ -141,14 +161,24 @@ app.get("/", (req, res) => {
     if (err) {
       console.log(err);
     } else {
-      res.render("index", {
-        list: data.map(function(item) {
-          var slideshow = item.toObject();
-          slideshow.id = slideshow._id.toString();
-          delete slideshow._id;
-          return slideshow;
-        })
-      });
+      Newsshow.find(function(err,data1){
+        if(err){
+          console.log(err)
+        }else{
+          res.render("index", {
+            list: data.map(function(item) {
+              var slideshow = item.toObject();
+              slideshow.id = slideshow._id.toString();
+              delete slideshow._id;
+              return slideshow;
+            }),
+            newsshow:data1.map(function(item){
+              var newsshow = item.toObject()
+              return newsshow
+            })
+          });  
+        }
+      }).sort({date:-1}).limit(5)  
     }
   });
 });
@@ -189,8 +219,6 @@ app.get("/api/v1/productlist", function(req, res) {
       res.json({
         list: data.map(function(item) {
           var product = item.toObject();
-          delete product._id;
-          delete product.__v;
           return product;
         })
       });
@@ -211,7 +239,6 @@ app.get("/api/v2/productlist", function(req, res) {
             message: "查询失败"
           });
         } else {
-          // console.log(data)
           res.json({
             list: data
           });
@@ -258,7 +285,51 @@ app.get("/api/v2/productlist", function(req, res) {
     ).limit(8);
   }
 });
-
+// 渲染news.html
+app.get("/news/:page",function(req,res){
+  function getPages(currentPage, pageCount) {
+    var pages = [currentPage];
+    var left = currentPage - 1;
+    var right = currentPage + 1;
+    while (pages.length < 15 && (left >= 1 || right <= pageCount)) {
+      if (left > 0) {
+        pages.unshift(left--)
+      }
+      if (right <= pageCount) {
+        pages.push(right++)
+      }
+    }
+    return pages
+  }
+  var currentPage = 1
+  if (req.params.page) {
+    currentPage = req.params.page * 1
+  }
+  var pageSize = 5
+  Newsshow.count({}, function (err, count) {
+    if (err) {
+      console.log(err)
+    } else {
+      var pageCount = Math.ceil(count / pageSize)
+      Newsshow.find(function (err1, data1) {
+        if (err1) {
+          console.log(err1);
+        } else {
+          var pages = getPages(currentPage, pageCount);
+          res.render("news", {
+            newsshow: data1.map(function (item) {
+              var product = item.toObject()
+              return product
+            }),
+            page: currentPage,
+            pageCount: pageCount,
+            pages: pages,
+          });
+        }
+      }).limit(pageSize).skip((currentPage - 1) * pageSize);
+    }
+  })
+})
 // add.html产品添加
 app.post(
   "/admin/product/add",
@@ -502,6 +573,18 @@ app.get("/api/case/:id", function(req, res) {
     }
   });
 });
+app.get("/api/news/:id", function(req, res) {
+  Newsshow.findById(req.params.id, function(err, data) {
+    if (err) {
+      console.log(err);
+    } else {
+      var newsshow = data.toObject();
+      res.render("news_detail", {
+        caseshow: newsshow
+      });
+    }
+  });
+});
 //渲染 picture-list.html
 app.get("/picture", function(req, res) {
   Slideshow.find(function(err, data) {
@@ -538,6 +621,37 @@ app.get("/apicase", function(req, res) {
     });
   });
 });
+// 渲染news-list.html
+app.get("/apinews", function(req, res) {
+  Newsshow.find(function(err, data) {
+    res.render("news-list", {
+      newsshow: data.map(function(item) {
+        var product = item.toObject();
+        return product;
+      }),
+      count: data.length
+    });
+  });
+});
+// 渲染plan。html
+app.get('/plan',function(req,res){
+  res.render("plan",{})
+})
+// 渲染about_us。html
+app.get('/about',function(req,res){
+  res.render("about_us",{})
+})
+// 渲染product.html
+app.get('/products',function(req,res){
+  res.render("product",{})
+})
+app.get('/history',function(req,res){
+  res.render("about_history",{})
+})
+app.get('/contact',function(req,res){
+  res.render("contact",{})
+})
+
 // 案例添加
 app.post("/caseadd", uploadMulti.single("imgSrc"), (req, res) => {
   var file = req.file;
@@ -551,10 +665,48 @@ app.post("/caseadd", uploadMulti.single("imgSrc"), (req, res) => {
     }
   });
   var caseshow = Caseshow(req.body);
+  var years = caseshow.date.split("-")
+  caseshow.year = years[0]
+  caseshow.month = years[1]
+  caseshow.day = years[2]
   var id = caseshow.toObject()._id.toString();
   caseshow.imgSrc = newname;
   caseshow.id = id;
   caseshow.save(function(error) {
+    if (error) {
+      res.json({
+        code: "error",
+        message: "添加失败"
+      });
+    } else {
+      res.json({
+        code: "success",
+        message: "添加成功"
+      });
+    }
+  });
+});
+// 动态添加
+app.post("/newsadd", uploadMulti.single("imgSrc"), (req, res) => {
+  var file = req.file;
+  var filename = file.originalname || "";
+  var d = new Date();
+  var ears = filename.split(".");
+  var newname = d.getTime() + "." + ears[1];
+  fs.rename(file.path, "public/upload/news/" + newname, function(err) {
+    if (err) {
+      throw err;
+    }
+  });
+  var newsshow = Newsshow(req.body);
+  var years = newsshow.date.split("-")
+  newsshow.year = years[0]
+  newsshow.month = years[1]
+  newsshow.day = years[2]
+  var id = newsshow.toObject()._id.toString();
+  newsshow.imgSrc = newname;
+  newsshow.id = id;
+  newsshow.save(function(error) {
     if (error) {
       res.json({
         code: "error",
@@ -613,6 +765,19 @@ app.get("/updata/case/:id", function(req, res) {
     }
   });
 });
+// 跳转到方案修改
+app.get("/updata/news/:id", function(req, res) {
+  Newsshow.findById(req.params.id, function(err, data) {
+    if (err) {
+      console.log(err);
+    } else {
+      var newsshow = data.toObject();
+      res.render("news-updata", {
+        newsshow: newsshow
+      });
+    }
+  });
+});
 //跳转到轮播图修改
 app.get("/updata/picture/:id", function(req, res) {
   Slideshow.findById(req.params.id, function(err, data) {
@@ -629,8 +794,7 @@ app.get("/updata/picture/:id", function(req, res) {
 app.post("/api/v3/edit/:id", uploadMulti.single("imgSrc"), function(req, res) {
   var data = req.body;
   var file = req.file;
-  var filename= file.originalname;
-  console.log(filename)
+  var filename= file.originalname;  
   var d = new Date();
   var ears = filename.split(".");
   var newname = d.getTime() + "." + ears[1];
@@ -647,7 +811,50 @@ app.post("/api/v3/edit/:id", uploadMulti.single("imgSrc"), function(req, res) {
     });
   });
   data.imgSrc = newname;
+  var years =  data.date.split("-")
+  data.year = years[0]
+  data.month= years[1]
+  data.day = years[2]
   Caseshow.findByIdAndUpdate(req.params.id, data, function(error) {
+    if (error) {
+      res.json({
+        code: "error",
+        message: "修改失败"
+      });
+    } else {
+      res.json({
+        code: "success",
+        message: "修改成功"
+      });
+    }
+  });
+});
+// 上传修改动态
+app.post("/api/v4/edit/:id", uploadMulti.single("imgSrc"), function(req, res) {
+  var data = req.body;
+  var file = req.file;
+  var filename= file.originalname;
+  var d = new Date();
+  var ears = filename.split(".");
+  var newname = d.getTime() + "." + ears[1];
+  fs.rename(file.path, "public/upload/news/" + newname, function(err) {
+    if (err) {
+      throw err;
+    }
+  });
+  Newsshow.findById(req.params.id, function(err, data) {
+    fs.unlink("public/upload/news/" + data.imgSrc, function(err) {
+      if (err) {
+        console.log(err);
+      }
+    });
+  });
+  data.imgSrc = newname;  
+  var years =  data.date.split("-")
+  data.year = years[0]
+  data.month= years[1]
+  data.day = years[2]
+  Newsshow.findByIdAndUpdate(req.params.id, data, function(error) {
     if (error) {
       res.json({
         code: "error",
@@ -684,7 +891,29 @@ app.post("/delete/case/:id",function(req,res){
     }
   });
 })
-
+// 删除单个方案
+app.post("/delete/news/:id",function(req,res){
+  Newsshow.findById(req.params.id, function(err, data) {
+    fs.unlink("public/upload/news/" + data.imgSrc, function(err) {
+      if (err) {
+        console.log(err);
+      }
+    });
+  });
+  Newsshow.findByIdAndRemove(req.params.id, function(err) {
+    if (err) {
+      res.json({
+        code: "error",
+        message: "删除数据失败"
+      });
+    } else {
+      res.json({
+        code: "success",
+        message: "删除数据成功"
+      });
+    }
+  });
+})
 // 轮播图修改后上传
 app.post("/api/v2/edit/:id", uploadMulti.single("slideshow"), function(
   req,
@@ -770,6 +999,28 @@ app.post("/deletecase",function(req,res){
     message: "删除数据成功"
   });
 })
+// 批量删除方案
+app.post("/deletenews",function(req,res){
+  var id =req.body.checkedId.split(",");
+  for(let i in id){
+    Newsshow.findById(id[i], function(err, data) {
+      fs.unlink("public/upload/news/" + data.imgSrc, function(err) {
+        if (err) {
+          console.log(err);
+        }
+      });
+      Newsshow.findByIdAndRemove(id[i], function(err) {
+        if (err) {
+          console.log(err);
+        }
+      });
+    });
+  }
+  res.json({
+    code: "success",
+    message: "删除数据成功"
+  });
+})
 // 批量轮播图删除
 app.post("/deleteall", function(req, res) {
   var id = req.body.checkedId.split(",");
@@ -795,7 +1046,6 @@ app.post("/deleteall", function(req, res) {
 // 批量删除产品
 app.post("/deleteproduct", function(req, res) {
   var id = req.body.checkedId.split(",");
-
   for (let i in id) {
     // 删除文件夹
     function delFile(url) {

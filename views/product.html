@@ -34,7 +34,7 @@
 		<div id="header" class="index_nav">
 
 			<div class="content">
-				<a href="index.html" id="logo"><img src="/images/logo.png" height="60" /></a>
+				<a href="/" id="logo"><img src="/images/logo.png" height="60" /></a>
 				<ul id="nav">
 					<menu-item :item="item" :index="index" v-for="(item, index) in menuList"></menu-item>
 				</ul>
@@ -55,16 +55,16 @@
 					</div>
 					<ul id="category">
 						<li>
-							<a href="product.html?type=all&page=1">全部</a>
+							<a href="/products?type=all&page=1">全部</a>
 						</li>
 						<li>
-							<a href="product.html?type=yjcp&page=1">硬件产品</a>
+							<a href="/products?type=yjcp&page=1">硬件产品</a>
 						</li>
 						<li>
-							<a href="product.html?type=yyrj&page=1">应用软件</a>
+							<a href="/products?type=yyrj&page=1">应用软件</a>
 						</li>
 						<li>
-							<a href="product.html?type=zbcp&page=1">周边产品</a>
+							<a href="/products?type=zbcp&page=1">周边产品</a>
 						</li>
 					</ul>
 					<product-list :product="product"></product-list>

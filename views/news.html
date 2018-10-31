@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="keywords" content="">
+		<meta name="description" content="">
+		<link rel="stylesheet" type="text/css" href="/css/lib.css">
+		<link rel="stylesheet" type="text/css" href="/css/base.css">
+		<link rel="stylesheet" type="text/css" href="/css/style.css">
+		<script type="text/javascript" src="/js/jquery-1.11.3.min.js"></script>
+		<script type="text/javascript" src="/js/vue.min.js"></script>
+		<script type="text/javascript" src="/bizScript/footer.js"></script>
+		<script type="text/javascript" src="/bizScript/header.js"></script>
+		<script type="text/javascript" src="/bizScript/constants.js"></script>
+		<script>
+			$(function() {
+				if(!$("#mindex").length) {
+					$('body').addClass('sscreen')
+				}
+			})
+		</script>
+		<script type="text/javascript" src="/js/org.min.js" data-main="baseMain"></script>
+		<script type="text/javascript" src="/js/form.min.js"></script>
+		<title>达人动态</title>
+
+	</head>
+
+	<body>
+	<div id="app">
+		<div class="bodyMask"> </div>
+		<div id="header" class="index_nav">
+
+			<div class="content">
+				<a href="index.html" id="logo"><img src="/images/logo.png" height="60" /></a>
+				<ul id="nav">
+					<menu-item :item="item" :index="index" v-for="(item, index) in menuList"></menu-item>
+				</ul>
+				<div class="clear"></div>
+			</div>
+			<a id="headSHBtn" href="#"><i class="fa fa-bars"></i></a>
+		</div>
+		<div id="sitecontent">
+
+			<div id="newsPage" class="npagePage Pagenews">
+				<div id="banner">
+					<div style="background-image:url(/images/news-banner.jpg);"></div>
+				</div>
+				<div class="content">
+					<div class="header">
+						<p class="title">关于我们</p>
+						<p class="subtitle">ABOUT US</p>
+					</div>
+					<div id="category">
+							<a href="/about">公司简介</a>
+							<a href="/history">公司历程</a>
+							<a href="/news/1"  class="active">达人动态</a>
+							<a href="/contact">联系地址</a>
+					</div>
+					<div id="newslist">
+						<div class="wrapper">
+							{{each newsshow newslist index}}
+							<div id="newsitem_{{index}}" class="wow newstitem left">
+								<a class="newscontent" target="_blank" href="/api/news/{{newslist.id}}">
+									<div class="news_wrapper">
+										<div class="newsbody">
+											<p class="date"><span class="md">{{newslist.year}}<span>-</span></span><span class="year">{{newslist.month}}-{{newslist.day}}</span></p>
+											<p class="title">{{newslist.title}}</p>
+											<div class="separator"></div>
+											<p class="description">{{newslist.remark}}</p>
+										</div>
+									</div>
+									<div class="newsimg" style="background-image:url(/upload/news/{{newslist.imgSrc}})"></div>
+								</a>
+								<a href="news_detail.html" target="_blank" class="details">more<i class="fa fa-angle-right"></i></a>
+							</div>
+							{{/each}}
+							
+						</div>
+					</div>
+					<div class="clear"></div>
+					<div id="pages">
+						{{each pages}}	
+						<a href="/news/{{$value}}" class="{{$value==page?'active':''}}">{{$value}}</a>
+                       {{/each}}
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 底部区域 -->
+		<side-footer :footer="footer"></side-footer>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var vm = new Vue({
+			el:'#app',
+			components: {
+		    	'side-footer': footDiv
+		  	},
+		  	data : {
+		  		footer:{
+		  			'corpname':FOOTER.CORPNAME,
+			  		'qqcode':FOOTER.QQCODE,
+			  		'telno':FOOTER.TELNO,
+			  		'corpaddress':FOOTER.CORPADDRESS,
+			  		'zipcode':FOOTER.ZIPCODE,
+			  		'mobileno':FOOTER.MOBILENO,
+			  		'faxno':FOOTER.FAXNO,
+			  		'corpemail':FOOTER.CORPEMAIL,
+			  		'sideauthor':FOOTER.SIDEAUTHOR,
+			  		'siderecord':FOOTER.SIDERECORD
+		  		},
+		  		menuList:menuList
+		  	}
+		})
+	</script>
+</html>
