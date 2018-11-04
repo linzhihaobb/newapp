@@ -95,12 +95,60 @@ var newsshowSchema = Schema(
     collection: "Newsshows"
   }
 );
+var planSchema = Schema(
+  {
+    id: String,
+    title: String,
+    imgSrc:String,
+    remark:String,
+    date:String,
+    year:String,
+    month:String,
+    day:String
+  },
+  {
+    collection: "Plans"
+  }
+);
+var planshowSchema = Schema({
+  id:String,
+  ranknameone:String,
+  typeid :String,
+  title:String
+},{
+  collection:"Planshows"
+})
+var plandetailSchema = Schema(
+  {
+    id: String,
+  ranknameone:String,
+  ranknametwo:String,
+  imgSrcone:String,
+  imgSrctwo:String,
+  imgSrcthree:String,
+  typeidone:String,
+  typeidtwo:String,
+    title: String,
+    contents: String,
+    contentss: String,
+    contentsss: String,
+    remarks:String,
+    remarkss:String,
+    remarksss:String,
+  },
+  {
+    collection: "Plandetails"
+  }
+);
 // 根据创建的用户数据库模型创建用户模型
 // User 由schema生成的模型，具有抽象属性和行为的数据库操作对。
 var Product = mongoose.model("Product", productSchema);
 var Slideshow = mongoose.model("Slideshow", slideshowSchema);
 var Caseshow = mongoose.model("Case", caseshowSchema);
 var Newsshow = mongoose.model("News", newsshowSchema);
+var Plan = mongoose.model("Plan", planSchema);
+var Planshow =mongoose.model('Planshow',planshowSchema) 
+var Plandetail = mongoose.model("Plandetail",plandetailSchema)
 // app.use(express.static(path.join(__dirname, "views")))
 app.use(express.static(path.join(__dirname, "public")));
 app.use(
@@ -165,18 +213,28 @@ app.get("/", (req, res) => {
         if(err){
           console.log(err)
         }else{
-          res.render("index", {
-            list: data.map(function(item) {
-              var slideshow = item.toObject();
-              slideshow.id = slideshow._id.toString();
-              delete slideshow._id;
-              return slideshow;
-            }),
-            newsshow:data1.map(function(item){
-              var newsshow = item.toObject()
-              return newsshow
-            })
-          });  
+          Plan.find(function(err,data2){
+            if(err){
+              console.log(err)
+            }else{
+              res.render("index", {
+                list: data.map(function(item) {
+                  var slideshow = item.toObject();
+                  slideshow.id = slideshow._id.toString();
+                  delete slideshow._id;
+                  return slideshow;
+                }),
+                newsshow:data1.map(function(item){
+                  var newsshow = item.toObject()
+                  return newsshow
+                }),
+                plan:data2.map(function(item){
+                  var plan = item.toObject()
+                  return plan
+                })
+              });
+            }
+          })  
         }
       }).sort({date:-1}).limit(5)  
     }
@@ -585,6 +643,42 @@ app.get("/api/news/:id", function(req, res) {
     }
   });
 });
+app.get("/synopsis/:id",function(req,res){
+  Plandetail.findById(req.params.id,function(err,data){
+    if(err){
+      console.log(err)
+    }else{
+      var plan = data.toObject()
+      res.render("synopsis",{
+        plan:plan
+      })
+    }
+  })
+})
+app.get("/scene/:id",function(req,res){
+  Plandetail.findById(req.params.id,function(err,data){
+    if(err){
+      console.log(err)
+    }else{
+      var plan = data.toObject()
+      res.render("scene",{
+        plan:plan
+      })
+    }
+  })
+})
+app.get("/constitute/:id",function(req,res){
+  Plandetail.findById(req.params.id,function(err,data){
+    if(err){
+      console.log(err)
+    }else{
+      var plan = data.toObject()
+      res.render("constitute",{
+        plan:plan
+      })
+    }
+  })
+})
 //渲染 picture-list.html
 app.get("/picture", function(req, res) {
   Slideshow.find(function(err, data) {
@@ -635,7 +729,41 @@ app.get("/apinews", function(req, res) {
 });
 // 渲染plan。html
 app.get('/plan',function(req,res){
-  res.render("plan",{})
+Plan.find(function(err,data){
+  if(err){
+    console.log(err)
+  }else{
+    Planshow.find(function(err,data1){
+      if(err){
+        console.log(err)
+      }else{
+
+            Plandetail.find(function(err,data2){
+              if(err){
+                console.log(err)
+              }else{
+                res.render("plan",{
+                  plan:data.map(function(item){
+                    var plan = item.toObject()
+                    return plan
+                  }),
+                  planshow:data1.map(function(item){
+                    var plan = item.toObject()
+                    return plan
+                  }),
+                  plandetail:data2.map(function(item){
+                    var plan = item.toObject()
+                    return plan
+                  })
+                })
+              }
+            })   
+      }
+    })
+    
+  }
+})
+  
 })
 // 渲染about_us。html
 app.get('/about',function(req,res){
@@ -955,7 +1083,7 @@ app.post("/api/v2/edit/:id", uploadMulti.single("slideshow"), function(
   });
 });
 // 单个轮播图删除
-app.post("/delete/:id", function(req, res) {
+app.post("/delete/picture/:id", function(req, res) {
   Slideshow.findById(req.params.id, function(err, data) {
     fs.unlink("public/upload/slideshow/" + data.link, function(err) {
       if (err) {
@@ -1259,6 +1387,501 @@ app.post("/api/v1/edit/:id", uploadMulti.array("img", 3), function(req, res) {
   }
 });
 
+
+
+// plan-list渲染
+app.get("/apiplan",function(req,res){
+  Plan.find(function(err,data){
+    if(err){
+      console.log(err)
+    }else{
+      res.render('plan-list',{
+        plan:data.map(function(item){
+          var plan = item.toObject()
+          return plan
+        }),
+        count:data.length
+      })
+    }
+  })  
+})
+// 方案添加
+app.post("/planadd",uploadMulti.single("img"),function(req,res){
+  var plan = Plan(req.body)
+  var years = (plan.date || "").split("-")
+  plan.year = years[0]
+  plan.month = years[1]
+  plan.day = years[2]
+  var file = req.file;
+  var filename;
+  filename = file.originalname;
+  var d = new Date();
+  var ears = filename.split(".");
+  var newname = d.getTime() + "." + ears[1];
+  fs.rename(file.path, "public/upload/plan/" + newname, function(err) {
+    if (err) {
+      throw err;
+    }
+  });
+  var id = plan.toObject()._id.toString();
+  plan.imgSrc = newname
+  plan.id = id
+ plan.save(function(error) {
+    if (error) {
+      res.json({
+        code: "error",
+        message: "添加失败"
+      });
+    } else {
+      res.json({
+        code: "success",
+        message: "添加成功"
+      });
+    }
+  });
+})
+// 跳转到修改方案
+app.get("/updata/plan/:id",function(req,res){
+  Plan.findById(req.params.id, function(err, data) {
+    if (err) {
+      console.log(err);
+    } else {
+      var plan = data.toObject();
+      res.render("plan-updata", {
+        plan:plan
+      });
+    }
+  });
+})
+// 上传方案修改
+app.post("/api/v5/edit/:id", uploadMulti.single("img"), function(req,res){
+  var data = req.body
+  console.log(data)
+  var years = data.date.split("-")
+  data.year = years[0]
+  data.month = years[1]
+  data.day = years[2]
+  var file = req.file;
+  var filename;
+  filename = file.originalname;
+  var d = new Date();
+  var ears = filename.split(".");
+  var newname = d.getTime() + "." + ears[1];
+  fs.rename(file.path, "public/upload/plan/" + newname, function(err) {
+    if (err) {
+      throw err;
+    }
+  });
+  Plan.findById(req.params.id, function(err, data) {
+    fs.unlink("public/upload/plan/" + data.imgSrc, function(err) {
+      if (err) {
+        console.log(err);
+      }
+    });
+  });
+ Plan.findByIdAndUpdate(req.params.id, data, function(error) {
+    if (error) {
+      console.log(error)
+      res.json({
+        code: "error",
+        message: "修改失败"
+      });
+    } else {
+      res.json({
+        code: "success",
+        message: "修改成功"
+      });
+    }
+  });
+})
+// 方案单个删除
+app.post('/delete/plan/:id',function(req,res){
+  Plan.findById(req.params.id, function(err, data) {
+    fs.unlink("public/upload/slideshow/" + data.imgSrc, function(err) {
+      if (err) {
+        console.log(err);
+      }
+    });
+  });
+  Plan.findByIdAndRemove(req.params.id,function(err){
+    if (err) {
+      res.json({
+        code: "error",
+        message: "删除数据失败"
+      });
+    } else {
+      res.json({
+        code: "success",
+        message: "删除数据成功"
+      });
+    }
+  })
+})
+// 批量删除方案
+app.post("/deleteplan",function(req,res){
+  var id =req.body.checkedId.split(",");
+  for(let i in id){
+    Plan.findById(id[i], function(err, data) {
+      fs.unlink("public/upload/slideshow/" + data.imgSrc, function(err) {
+        if (err) {
+          console.log(err);
+        }
+      });
+    });
+      Plan.findByIdAndRemove(id[i], function(err) {
+        if (err) {
+          console.log(err);
+        }
+    });
+  }
+  res.json({
+    code: "success",
+    message: "删除数据成功"
+  });
+})
+// 渲染planshow-list.html
+app.get("/apiplanshow",function(req,res){
+  Planshow.find(function(err,data){
+if(err){
+  console.log(err)
+}else{
+  res.render("planshow-list",{
+    plan:data.map(function(item){
+      var planshow = item.toObject()
+      return planshow
+    }),
+    count:data.length
+  })
+}
+  })
+})
+// 渲染planshow-add.html
+app.get("/planshowadd",function(req,res){
+  Plan.find(function(err,data){
+    if(err){
+      console.log(err)
+    }else{
+      res.render("planshow-add",{
+        plan:data.map(function(item){
+          var plan = item.toObject()
+          return plan
+        })
+
+      })
+    }
+  })
+})
+// 上传分类
+app.post("/api/planshowadd",function(req,res){
+  var planshow = Planshow(req.body)
+  var id = planshow.toObject()._id.toString()
+   planshow.id = id
+   planshow.save(function(error){
+    if (error) {
+      res.json({
+        code: "error",
+        message: "添加失败"
+      });
+    } else {
+      res.json({
+        code: "success",
+        message: "添加成功"
+      });
+    }
+   })
+})
+// 跳转到修改方案分类
+app.get("/updata/planshow/:id",function(req,res){
+  Planshow.findById(req.params.id, function(err, data) {
+    if (err) {
+      console.log(err);
+    } else {
+      Plan.find(function(err,data1){
+        if(err){
+          console.log(err)
+        }else{
+          var plan = data.toObject();
+          res.render("planshow-updata", {
+            planone:plan,
+            plan:data1.map(function(item){
+              var ppp = item.toObject()
+              return ppp
+            })
+          });
+        }
+      })   
+    }
+  });
+})
+// 上传修改分类
+app.post("/api/v6/edit/:id",function(req,res){
+  var data = req.body
+  Planshow.findByIdAndUpdate(req.params.id,data,function(error){
+    if (error) {
+      console.log(error)
+      res.json({
+        code: "error",
+        message: "修改失败"
+      });
+    } else {
+      res.json({
+        code: "success",
+        message: "修改成功"
+      });
+    }
+  });
+  })
+//  删除单个分类
+app.post('/delete/planshow/:id',function(req,res){
+ 
+  Planshow.findByIdAndRemove(req.params.id,function(err){
+    if (err) {
+      res.json({
+        code: "error",
+        message: "删除数据失败"
+      });
+    } else {
+      res.json({
+        code: "success",
+        message: "删除数据成功"
+      });
+    }
+  })
+})
+// 批量删除方案
+app.post("/deleteplanshow",function(req,res){
+  var id =req.body.checkedId.split(",");
+  for(let i in id){
+      Planshow.findByIdAndRemove(id[i], function(err) {
+        if (err) {
+          console.log(err);
+        }
+    });
+  }
+  res.json({
+    code: "success",
+    message: "删除数据成功"
+  });
+})
+
+// 渲染plandetail-list.html
+app.get("/apiplandetail",function(req,res){
+  Plandetail.find(function(err,data){
+  if(err){
+    console.log(err)
+  }else{
+    res.render("plandetail-list",{
+      plan:data.map(function(item){
+        var plan = item.toObject()
+        return plan
+      }),
+      count:data.length
+    })
+  }
+  })
+  
+})
+// 给plandetail-add和updata数据
+app.get("/detail",function(req,res){
+  Plan.find(function(err,data){
+    if(err){
+      console.log(err)
+    }else{
+      Planshow.find(function(err,data1){
+        if(err){
+          console.log(err)
+        }else{
+          res.json({
+            plan:data,
+            planshow:data1
+          })
+        }
+      })
+    }
+  })
+})
+
+var cpupload = uploadMulti.fields([{name:"imgSrcone",maxCount:1},{name:"imgSrctwo",maxCount:1},{name:"imgSrcthree",maxCount:1},])
+// 上传数据
+app.post("/plandetailadd",cpupload,function(req,res){
+  var plandetail = Plandetail(req.body)
+var files = req.files
+var id = plandetail.toObject()._id.toString()
+fs.exists("public/upload/plandetail/" + id,function(exists){
+  if(exists){
+    for (var i in files ){
+      fs.rename(files[i][0].path,"public/upload/plandetail/" + id +files[i][0].originalname,function(err){
+        if(err){
+          throw err
+        }
+      })
+    }
+  }else{
+    fs.mkdir("public/upload/plandetail/"+id,function(err){
+      if(err){
+        console.log(err)
+      }else{
+        for (var i in files ){
+          fs.rename(files[i][0].path,"public/upload/plandetail/" + id +"/" +files[i][0].originalname,function(err){
+            if(err){
+              throw err
+            }
+          })
+        }
+      }
+    })
+  }
+})
+var file0=files["imgSrcone"][0].originalname
+var file1=files["imgSrctwo"][0].originalname
+var file2=files["imgSrcthree"][0].originalname
+plandetail.id = id
+plandetail.imgSrcone = "/upload/plandetail/" + id +"/" +file0
+plandetail.imgSrctwo = "/upload/plandetail/" + id +"/" +file1
+plandetail.imgSrcthree = "/upload/plandetail/" + id +"/" +file2
+plandetail.save(function(error){
+  if (error) {
+    res.json({
+      code: "error",
+      message: "添加失败"
+    });
+  } else {
+    res.json({
+      code: "success",
+      message: "添加成功"
+    });
+  }
+})
+})
+// 跳转修改页面
+app.get("/updata/plandetail/:id",function(req,res){
+  Plandetail.findById(req.params.id,function(err,data){
+    if(err){
+      console.log(err)
+    }else{
+      var data1 = data.toObject()
+      res.render("plandetail-updata",{
+        plandetail:data1
+      })
+    }
+  })
+})
+// 上传修改
+app.post("/api/v7/edit/:id",cpupload,function(req,res){
+  var data =req.body
+  var files = req.files
+  for (var i in files ){
+    fs.rename(files[i][0].path,"public/upload/plandetail/" + req.params.id+"/" +files[i][0].originalname,function(err){
+      if(err){
+        throw err
+      }
+    })
+  }
+  var file0=files["imgSrcone"][0].originalname
+var file1=files["imgSrctwo"][0].originalname
+var file2=files["imgSrcthree"][0].originalname
+data.imgSrcone = "/upload/plandetail/" + req.params.id +"/" +file0
+data.imgSrctwo = "/upload/plandetail/" + req.params.id +"/" +file1
+data.imgSrcthree = "/upload/plandetail/" + req.params.id +"/" +file2
+Plandetail.findByIdAndUpdate(req.params.id,data,function(error){
+  if (error) {
+    console.log(error)
+    res.json({
+      code: "error",
+      message: "修改失败"
+    });
+  } else {
+    res.json({
+      code: "success",
+      message: "修改成功"
+    });
+  }
+})
+})
+// 单个删除
+app.post("/delete/plandetail/:id",function(req,res){
+    // 删除文件夹
+    function delFile(url) {
+      var data = fs.readdirSync(url);
+      for (var i = 0; i < data.length; i++) {
+        var path = url + "/" + data[i];
+        var stat = fs.statSync(path);
+        if (stat.isFile()) {
+          fs.unlinkSync(path);
+        } else {
+          delFile(path);
+        }
+      }
+      fs.rmdirSync(url);
+    }
+    Plandetail.findById(req.params.id, function(err, data) {
+      if (err) {
+        console.log(err);
+      } else {
+        fs.exists(`public/upload/plandetail/${req.params.id}`, function(exists) {
+          if (exists) {
+            delFile(`public/upload/plandetail/${req.params.id}`); //删除文件夹
+          }
+        });
+      }
+    });
+   Plandetail.findByIdAndRemove(req.params.id, function(err) {
+      if (err) {
+        res.json({
+          code: "error",
+          message: "删除数据失败"
+        });
+      } else {
+        res.json({
+          code: "success",
+          message: "删除数据成功"
+        });
+      }
+    });
+})
+// 批量删除
+app.post("/deleteplandetail",function(req,res){
+  var id =req.body.checkedId.split(",");
+  function delFile(url) {
+      var data = fs.readdirSync(url);
+      for (var i = 0; i < data.length; i++) {
+        var path = url + "/" + data[i];
+        var stat = fs.statSync(path);
+        if (stat.isFile()) {
+          fs.unlinkSync(path);
+        } else {
+          delFile(path);
+        }
+      }
+      fs.rmdirSync(url);
+    }
+  for(let i in id){
+    Plandetail.findById(id[i], function(err, data) {
+      if (err) {
+        console.log(err);
+      } else {
+        fs.exists(`public/upload/plandetail/${id[i]}`, function(exists) {
+          if (exists) {
+            delFile(`public/upload/plandetail/${id[i]}`); //删除文件夹
+          }
+        });
+      }
+    });
+   Plandetail.findByIdAndRemove(id[i], function(err) {
+      if (err) {
+        res.json({
+          code: "error",
+          message: "删除数据失败"
+        });
+      } 
+    });
+
+}
+res.json({
+  code: "success",
+  message: "删除数据成功"
+});
+})
 // 退出
 app.get("/logout", function(req, res) {
   req.session.userName = null; // 删除session

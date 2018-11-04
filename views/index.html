@@ -81,36 +81,18 @@
 						<div class="module-content fw" id="servicelist">
 							<div class="wrapper">
 								<ul class="content_list" data-options-sliders="3" data-options-margin="0" data-options-ease="1" data-options-speed="1">
-									<li id="serviceitem_0" class="serviceitem wow">
-										<a href="#" target="_blank">
-											<p class="service_img"><img src="/images/zhjs.jpg" width="320" height="120" alt="智慧教室" /></p>
+									{{each plan planlist index}}
+									<li id="serviceitem_{{index}}" class="serviceitem wow">
+										<a href="/plan" target="_blank">
+											<p class="service_img"><img src="/upload/plan/{{planlist.imgSrc}}" width="320" height="120" alt="智慧教室" /></p>
 											<div class="service_info">
-												<p class="title">智慧教室</p>
-												<p class="description">以交互智能平板为核心设备，配套移动授课终端、视频展台、反馈器等相关周边产品，增强了教学展示效果，丰富...</p>
+												<p class="title">{{planlist.title}}</p>
+												<p class="description">{{planlist.remark}}</p>
 											</div>
 										</a>
-										<a href="#" target="_blank" class="details">more<i class="fa fa-angle-right"></i></a>
+										<a href="/plan" target="_blank" class="details">more<i class="fa fa-angle-right"></i></a>
 									</li>
-									<li id="serviceitem_1" class="serviceitem wow">
-										<a href="#" target="_blank">
-											<p class="service_img"><img src="/images/znxy.jpg" width="320" height="120" alt="智能校园" /></p>
-											<div class="service_info">
-												<p class="title">智能校园</p>
-												<p class="description">以智能助教平台为核心，配套扫描仪，辅以教师办公电脑，即可实现学生常规测试成绩智能批改、学生考试数据... </p>
-											</div>
-										</a>
-										<a href="#" target="_blank" class="details">more<i class="fa fa-angle-right"></i></a>
-									</li>
-									<li id="serviceitem_2" class="serviceitem wow">
-										<a href="#" target="_blank">
-											<p class="service_img"><img src="/images/znxq.jpg" width="320" height="120" alt="智囊学区" /></p>
-											<div class="service_info">
-												<p class="title">智囊学区</p>
-												<p class="description">针对提升教师信息技术在实际中的应用能力，通过线上与线下培训，结合实践案例，推进信息技术在教学过程中的普遍应用... </p>
-											</div>
-										</a>
-										<a href="#" target="_blank" class="details">more<i class="fa fa-angle-right"></i></a>
-									</li>
+									{{/each}}
 								</ul>
 							</div>
 						</div>

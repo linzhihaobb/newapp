@@ -93,7 +93,7 @@ var productList = (function(){
           // console.log(xhr.response)
           var res = JSON.parse(xhr.response)
           // console.dir(res)  // 拼接数据在页面显示
-          console.log(res.list)
+        //   console.log(res.list)
         result = res.list
       }
   }
