@@ -47,10 +47,10 @@
 		<div id="sitecontent">
 			<div id="indexPage">
 				<div id="mslider" class="module">
-					<ul class="slider" data-options-height="650" data-options-auto="0" data-options-mode="0" data-options-pause="4" data-options-ease="ease-out">
+					<ul class="slider" data-options-height="650" data-options-auto="1" data-options-mode="0" data-options-pause="4" data-options-ease="ease-out">
                   {{each list show index}}
 						<li style="background-image:url(/upload/slideshow/{{show.link}})">
-							<div id="tempImage_0"></div>
+							<div id="tempImage_{{index}}"></div>
 							<img style="display:none" src="/upload/slideshow/{{show.link}}" alt="" />
 							<a target="_blank">
 								<div>
@@ -97,7 +97,7 @@
 							</div>
 						</div>
 						<div class="clear"></div>
-						<a href="plan.html" class="more wow">MORE<i class="fa fa-angle-right"></i></a>
+						<a href="/plan" class="more wow">MORE<i class="fa fa-angle-right"></i></a>
 					</div>
 				</div>
 				<div id="mproject" class="module">

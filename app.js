@@ -71,9 +71,9 @@ var caseshowSchema = Schema(
     content: String,
     remark: String,
     date: String,
-    year:String,
-    month:String,
-    day:String
+    year: String,
+    month: String,
+    day: String
   },
   {
     collection: "Caseshows"
@@ -87,9 +87,9 @@ var newsshowSchema = Schema(
     content: String,
     remark: String,
     date: String,
-    year:String,
-    month:String,
-    day:String
+    year: String,
+    month: String,
+    day: String
   },
   {
     collection: "Newsshows"
@@ -99,42 +99,45 @@ var planSchema = Schema(
   {
     id: String,
     title: String,
-    imgSrc:String,
-    remark:String,
-    date:String,
-    year:String,
-    month:String,
-    day:String
+    imgSrc: String,
+    remark: String,
+    date: String,
+    year: String,
+    month: String,
+    day: String
   },
   {
     collection: "Plans"
   }
 );
-var planshowSchema = Schema({
-  id:String,
-  ranknameone:String,
-  typeid :String,
-  title:String
-},{
-  collection:"Planshows"
-})
+var planshowSchema = Schema(
+  {
+    id: String,
+    ranknameone: String,
+    typeid: String,
+    title: String
+  },
+  {
+    collection: "Planshows"
+  }
+);
 var plandetailSchema = Schema(
   {
     id: String,
-  ranknameone:String,
-  ranknametwo:String,
-  imgSrcone:String,
-  imgSrctwo:String,
-  imgSrcthree:String,
-  typeidone:String,
-  typeidtwo:String,
+    ranknameone: String,
+    ranknametwo: String,
+    imgSrcone: String,
+    imgSrctwo: String,
+    imgSrcthree: String,
+    typeidone: String,
+    typeidtwo: String,
     title: String,
     contents: String,
     contentss: String,
     contentsss: String,
-    remarks:String,
-    remarkss:String,
-    remarksss:String,
+    remarks: String,
+    remarkss: String,
+    remarksss: String
   },
   {
     collection: "Plandetails"
@@ -147,8 +150,8 @@ var Slideshow = mongoose.model("Slideshow", slideshowSchema);
 var Caseshow = mongoose.model("Case", caseshowSchema);
 var Newsshow = mongoose.model("News", newsshowSchema);
 var Plan = mongoose.model("Plan", planSchema);
-var Planshow =mongoose.model('Planshow',planshowSchema) 
-var Plandetail = mongoose.model("Plandetail",plandetailSchema)
+var Planshow = mongoose.model("Planshow", planshowSchema);
+var Plandetail = mongoose.model("Plandetail", plandetailSchema);
 // app.use(express.static(path.join(__dirname, "views")))
 app.use(express.static(path.join(__dirname, "public")));
 app.use(
@@ -209,14 +212,14 @@ app.get("/", (req, res) => {
     if (err) {
       console.log(err);
     } else {
-      Newsshow.find(function(err,data1){
-        if(err){
-          console.log(err)
-        }else{
-          Plan.find(function(err,data2){
-            if(err){
-              console.log(err)
-            }else{
+      Newsshow.find(function(err, data1) {
+        if (err) {
+          console.log(err);
+        } else {
+          Plan.find(function(err, data2) {
+            if (err) {
+              console.log(err);
+            } else {
               res.render("index", {
                 list: data.map(function(item) {
                   var slideshow = item.toObject();
@@ -224,19 +227,21 @@ app.get("/", (req, res) => {
                   delete slideshow._id;
                   return slideshow;
                 }),
-                newsshow:data1.map(function(item){
-                  var newsshow = item.toObject()
-                  return newsshow
+                newsshow: data1.map(function(item) {
+                  var newsshow = item.toObject();
+                  return newsshow;
                 }),
-                plan:data2.map(function(item){
-                  var plan = item.toObject()
-                  return plan
+                plan: data2.map(function(item) {
+                  var plan = item.toObject();
+                  return plan;
                 })
               });
             }
-          })  
+          }).limit(3);
         }
-      }).sort({date:-1}).limit(5)  
+      })
+        .sort({ date: -1 })
+        .limit(5);
     }
   });
 });
@@ -344,54 +349,56 @@ app.get("/api/v2/productlist", function(req, res) {
   }
 });
 // 渲染news.html
-app.get("/news/:page",function(req,res){
+app.get("/news/:page", function(req, res) {
   function getPages(currentPage, pageCount) {
     var pages = [currentPage];
     var left = currentPage - 1;
     var right = currentPage + 1;
     while (pages.length < 15 && (left >= 1 || right <= pageCount)) {
       if (left > 0) {
-        pages.unshift(left--)
+        pages.unshift(left--);
       }
       if (right <= pageCount) {
-        pages.push(right++)
+        pages.push(right++);
       }
     }
-    return pages
+    return pages;
   }
-  var currentPage = 1
+  var currentPage = 1;
   if (req.params.page) {
-    currentPage = req.params.page * 1
+    currentPage = req.params.page * 1;
   }
-  var pageSize = 5
-  Newsshow.count({}, function (err, count) {
+  var pageSize = 5;
+  Newsshow.count({}, function(err, count) {
     if (err) {
-      console.log(err)
+      console.log(err);
     } else {
-      var pageCount = Math.ceil(count / pageSize)
-      Newsshow.find(function (err1, data1) {
+      var pageCount = Math.ceil(count / pageSize);
+      Newsshow.find(function(err1, data1) {
         if (err1) {
           console.log(err1);
         } else {
           var pages = getPages(currentPage, pageCount);
           res.render("news", {
-            newsshow: data1.map(function (item) {
-              var product = item.toObject()
-              return product
+            newsshow: data1.map(function(item) {
+              var product = item.toObject();
+              return product;
             }),
             page: currentPage,
             pageCount: pageCount,
-            pages: pages,
+            pages: pages
           });
         }
-      }).limit(pageSize).skip((currentPage - 1) * pageSize);
+      })
+        .limit(pageSize)
+        .skip((currentPage - 1) * pageSize);
     }
-  })
-})
+  });
+});
 // add.html产品添加
 app.post(
   "/admin/product/add",
-  uploadMulti.array("img", 3),
+  uploadMulti.array("img", 5),
   (req, res, next) => {
     if (req.session.userName) {
       var product = Product(req.body);
@@ -400,13 +407,18 @@ app.post(
       var fileInfos = [];
       var otherList = [];
       var types = "";
+      var d = new Date();
       fs.exists(`public/upload/product/${id}`, function(exists) {
         if (exists) {
           for (let i in files) {
             var file = files[i];
+            var filename;
+            filename = file.originalname;
+            var ears = filename.split(".");
+            var newname = d.getTime() +i + "." + ears[1];
             fs.rename(
               file.path,
-              "public/upload/product/" + id + "/" + file.originalname,
+              "public/upload/product/" + id + "/" + newname,
               function(err) {
                 if (err) {
                   throw err;
@@ -421,9 +433,13 @@ app.post(
             } else {
               for (let i in files) {
                 var file = files[i];
+                var filename;
+                filename = file.originalname;
+                var ears = filename.split(".");
+                var newname = d.getTime() + i+ "." + ears[1];
                 fs.rename(
                   file.path,
-                  "public/upload/product/" + id + "/" + file.originalname,
+                  "public/upload/product/" + id + "/" + newname,
                   function(err) {
                     if (err) {
                       throw err;
@@ -439,8 +455,12 @@ app.post(
         var file = files[i];
         var fileInfo = {};
         var style = {};
+        var filename;
+                filename = file.originalname;
+                var ears = filename.split(".");
+                var newname = d.getTime() + i+ "." + ears[1];
         style.backgroundImage =
-          "url(/upload/product/" + id + "/" + file.originalname + ")";
+          "url(/upload/product/" + id + "/" + newname + ")";
         style.backgroundSize = "100%";
         style.backgroundRepeat = "no-repeat";
         style.backgroundPosition = "center";
@@ -484,8 +504,11 @@ app.post(
           }
         ];
       }
+      var filefirst=files[0].originalname;
+      var earss = filefirst.split(".");
+      var newnames = d.getTime() + "0"+ "." + earss[1];
       product.id = id;
-      product.imgSrc = "upload/product/" + id + "/" + files[0].originalname;
+      product.imgSrc = "upload/product/" + id + "/" + newnames;
       product.href =
         "product_detail.html?id=" + id + "&" + "type=" + req.body.type;
       product.imgList = fileInfos;
@@ -643,42 +666,42 @@ app.get("/api/news/:id", function(req, res) {
     }
   });
 });
-app.get("/synopsis/:id",function(req,res){
-  Plandetail.findById(req.params.id,function(err,data){
-    if(err){
-      console.log(err)
-    }else{
-      var plan = data.toObject()
-      res.render("synopsis",{
-        plan:plan
-      })
+app.get("/synopsis/:id", function(req, res) {
+  Plandetail.findById(req.params.id, function(err, data) {
+    if (err) {
+      console.log(err);
+    } else {
+      var plan = data.toObject();
+      res.render("synopsis", {
+        plan: plan
+      });
     }
-  })
-})
-app.get("/scene/:id",function(req,res){
-  Plandetail.findById(req.params.id,function(err,data){
-    if(err){
-      console.log(err)
-    }else{
-      var plan = data.toObject()
-      res.render("scene",{
-        plan:plan
-      })
+  });
+});
+app.get("/scene/:id", function(req, res) {
+  Plandetail.findById(req.params.id, function(err, data) {
+    if (err) {
+      console.log(err);
+    } else {
+      var plan = data.toObject();
+      res.render("scene", {
+        plan: plan
+      });
     }
-  })
-})
-app.get("/constitute/:id",function(req,res){
-  Plandetail.findById(req.params.id,function(err,data){
-    if(err){
-      console.log(err)
-    }else{
-      var plan = data.toObject()
-      res.render("constitute",{
-        plan:plan
-      })
+  });
+});
+app.get("/constitute/:id", function(req, res) {
+  Plandetail.findById(req.params.id, function(err, data) {
+    if (err) {
+      console.log(err);
+    } else {
+      var plan = data.toObject();
+      res.render("constitute", {
+        plan: plan
+      });
     }
-  })
-})
+  });
+});
 //渲染 picture-list.html
 app.get("/picture", function(req, res) {
   Slideshow.find(function(err, data) {
@@ -728,57 +751,54 @@ app.get("/apinews", function(req, res) {
   });
 });
 // 渲染plan。html
-app.get('/plan',function(req,res){
-Plan.find(function(err,data){
-  if(err){
-    console.log(err)
-  }else{
-    Planshow.find(function(err,data1){
-      if(err){
-        console.log(err)
-      }else{
-
-            Plandetail.find(function(err,data2){
-              if(err){
-                console.log(err)
-              }else{
-                res.render("plan",{
-                  plan:data.map(function(item){
-                    var plan = item.toObject()
-                    return plan
-                  }),
-                  planshow:data1.map(function(item){
-                    var plan = item.toObject()
-                    return plan
-                  }),
-                  plandetail:data2.map(function(item){
-                    var plan = item.toObject()
-                    return plan
-                  })
+app.get("/plan", function(req, res) {
+  Plan.find(function(err, data) {
+    if (err) {
+      console.log(err);
+    } else {
+      Planshow.find(function(err, data1) {
+        if (err) {
+          console.log(err);
+        } else {
+          Plandetail.find(function(err, data2) {
+            if (err) {
+              console.log(err);
+            } else {
+              res.render("plan", {
+                plan: data.map(function(item) {
+                  var plan = item.toObject();
+                  return plan;
+                }),
+                planshow: data1.map(function(item) {
+                  var plan = item.toObject();
+                  return plan;
+                }),
+                plandetail: data2.map(function(item) {
+                  var plan = item.toObject();
+                  return plan;
                 })
-              }
-            })   
-      }
-    })
-    
-  }
-})
-  
-})
+              });
+            }
+          });
+        }
+      });
+    }
+  });
+});
 // 渲染about_us。html
-app.get('/about',function(req,res){
-  res.render("about_us",{})
-})
+app.get("/about", function(req, res) {
+  res.render("about_us", {});
+});
 // 渲染product.html
-app.get('/products',function(req,res){
-  res.render("product",{})
-})
-app.get('/history',function(req,res){
-  res.render("about_history",{})
-})
-app.get('/contact',function(req,res){
-  res.render("contact",{})
-})
+app.get("/products", function(req, res) {
+  res.render("product", {});
+});
+app.get("/history", function(req, res) {
+  res.render("about_history", {});
+});
+app.get("/contact", function(req, res) {
+  res.render("contact", {});
+});
 
 // 案例添加
 app.post("/caseadd", uploadMulti.single("imgSrc"), (req, res) => {
@@ -793,10 +813,10 @@ app.post("/caseadd", uploadMulti.single("imgSrc"), (req, res) => {
     }
   });
   var caseshow = Caseshow(req.body);
-  var years = caseshow.date.split("-")
-  caseshow.year = years[0]
-  caseshow.month = years[1]
-  caseshow.day = years[2]
+  var years = caseshow.date.split("-");
+  caseshow.year = years[0];
+  caseshow.month = years[1];
+  caseshow.day = years[2];
   var id = caseshow.toObject()._id.toString();
   caseshow.imgSrc = newname;
   caseshow.id = id;
@@ -827,10 +847,10 @@ app.post("/newsadd", uploadMulti.single("imgSrc"), (req, res) => {
     }
   });
   var newsshow = Newsshow(req.body);
-  var years = newsshow.date.split("-")
-  newsshow.year = years[0]
-  newsshow.month = years[1]
-  newsshow.day = years[2]
+  var years = newsshow.date.split("-");
+  newsshow.year = years[0];
+  newsshow.month = years[1];
+  newsshow.day = years[2];
   var id = newsshow.toObject()._id.toString();
   newsshow.imgSrc = newname;
   newsshow.id = id;
@@ -922,7 +942,7 @@ app.get("/updata/picture/:id", function(req, res) {
 app.post("/api/v3/edit/:id", uploadMulti.single("imgSrc"), function(req, res) {
   var data = req.body;
   var file = req.file;
-  var filename= file.originalname;  
+  var filename = file.originalname;
   var d = new Date();
   var ears = filename.split(".");
   var newname = d.getTime() + "." + ears[1];
@@ -939,10 +959,10 @@ app.post("/api/v3/edit/:id", uploadMulti.single("imgSrc"), function(req, res) {
     });
   });
   data.imgSrc = newname;
-  var years =  data.date.split("-")
-  data.year = years[0]
-  data.month= years[1]
-  data.day = years[2]
+  var years = data.date.split("-");
+  data.year = years[0];
+  data.month = years[1];
+  data.day = years[2];
   Caseshow.findByIdAndUpdate(req.params.id, data, function(error) {
     if (error) {
       res.json({
@@ -961,7 +981,7 @@ app.post("/api/v3/edit/:id", uploadMulti.single("imgSrc"), function(req, res) {
 app.post("/api/v4/edit/:id", uploadMulti.single("imgSrc"), function(req, res) {
   var data = req.body;
   var file = req.file;
-  var filename= file.originalname;
+  var filename = file.originalname;
   var d = new Date();
   var ears = filename.split(".");
   var newname = d.getTime() + "." + ears[1];
@@ -977,11 +997,11 @@ app.post("/api/v4/edit/:id", uploadMulti.single("imgSrc"), function(req, res) {
       }
     });
   });
-  data.imgSrc = newname;  
-  var years =  data.date.split("-")
-  data.year = years[0]
-  data.month= years[1]
-  data.day = years[2]
+  data.imgSrc = newname;
+  var years = data.date.split("-");
+  data.year = years[0];
+  data.month = years[1];
+  data.day = years[2];
   Newsshow.findByIdAndUpdate(req.params.id, data, function(error) {
     if (error) {
       res.json({
@@ -997,7 +1017,7 @@ app.post("/api/v4/edit/:id", uploadMulti.single("imgSrc"), function(req, res) {
   });
 });
 // 删除单个案例
-app.post("/delete/case/:id",function(req,res){
+app.post("/delete/case/:id", function(req, res) {
   Caseshow.findById(req.params.id, function(err, data) {
     fs.unlink("public/upload/case/" + data.imgSrc, function(err) {
       if (err) {
@@ -1018,9 +1038,9 @@ app.post("/delete/case/:id",function(req,res){
       });
     }
   });
-})
+});
 // 删除单个方案
-app.post("/delete/news/:id",function(req,res){
+app.post("/delete/news/:id", function(req, res) {
   Newsshow.findById(req.params.id, function(err, data) {
     fs.unlink("public/upload/news/" + data.imgSrc, function(err) {
       if (err) {
@@ -1041,7 +1061,7 @@ app.post("/delete/news/:id",function(req,res){
       });
     }
   });
-})
+});
 // 轮播图修改后上传
 app.post("/api/v2/edit/:id", uploadMulti.single("slideshow"), function(
   req,
@@ -1106,9 +1126,9 @@ app.post("/delete/picture/:id", function(req, res) {
   });
 });
 // 批量删除案例
-app.post("/deletecase",function(req,res){
-  var id =req.body.checkedId.split(",");
-  for(let i in id){
+app.post("/deletecase", function(req, res) {
+  var id = req.body.checkedId.split(",");
+  for (let i in id) {
     Caseshow.findById(id[i], function(err, data) {
       fs.unlink("public/upload/case/" + data.imgSrc, function(err) {
         if (err) {
@@ -1126,11 +1146,11 @@ app.post("/deletecase",function(req,res){
     code: "success",
     message: "删除数据成功"
   });
-})
+});
 // 批量删除方案
-app.post("/deletenews",function(req,res){
-  var id =req.body.checkedId.split(",");
-  for(let i in id){
+app.post("/deletenews", function(req, res) {
+  var id = req.body.checkedId.split(",");
+  for (let i in id) {
     Newsshow.findById(id[i], function(err, data) {
       fs.unlink("public/upload/news/" + data.imgSrc, function(err) {
         if (err) {
@@ -1148,7 +1168,7 @@ app.post("/deletenews",function(req,res){
     code: "success",
     message: "删除数据成功"
   });
-})
+});
 // 批量轮播图删除
 app.post("/deleteall", function(req, res) {
   var id = req.body.checkedId.split(",");
@@ -1267,20 +1287,25 @@ app.get("/edit/:id", function(req, res) {
   });
 });
 // 上传修改内容
-app.post("/api/v1/edit/:id", uploadMulti.array("img", 3), function(req, res) {
+app.post("/api/v1/edit/:id", uploadMulti.array("img", 5), function(req, res) {
   if (req.session.userName) {
     var data = req.body;
     var files = req.files;
     var fileInfos = [];
     var otherList = [];
     var types = "";
+    var d = new Date();
     fs.exists(`public/upload/product/${req.params.id}`, function(exists) {
       if (exists) {
         for (let i in files) {
           var file = files[i];
+          var filename;
+            filename = file.originalname;
+            var ears = filename.split(".");
+            var newname = d.getTime() +i + "." + ears[1];
           fs.rename(
             file.path,
-            "public/upload/product/" + req.params.id + "/" + file.originalname,
+            "public/upload/product/" + req.params.id + "/" + newname,
             function(err) {
               if (err) {
                 throw err;
@@ -1295,12 +1320,16 @@ app.post("/api/v1/edit/:id", uploadMulti.array("img", 3), function(req, res) {
           } else {
             for (let i in files) {
               var file = files[i];
+              var filename;
+              filename = file.originalname;
+              var ears = filename.split(".");
+              var newname = d.getTime() +i + "." + ears[1];
               fs.rename(
                 file.path,
                 "public/upload/product/" +
                   req.params.id +
                   "/" +
-                  file.originalname,
+                  newname,
                 function(err) {
                   if (err) {
                     throw err;
@@ -1316,8 +1345,12 @@ app.post("/api/v1/edit/:id", uploadMulti.array("img", 3), function(req, res) {
       var file = files[i];
       var fileInfo = {};
       var style = {};
+      var filename;
+              filename = file.originalname;
+              var ears = filename.split(".");
+              var newname = d.getTime() +i + "." + ears[1];
       style.backgroundImage =
-        "url(/upload/product/" + req.params.id + "/" + file.originalname + ")";
+        "url(/upload/product/" + req.params.id + "/" + newname + ")";
       style.backgroundSize = "100%";
       style.backgroundRepeat = "no-repeat";
       style.backgroundPosition = "center";
@@ -1361,9 +1394,11 @@ app.post("/api/v1/edit/:id", uploadMulti.array("img", 3), function(req, res) {
         }
       ];
     }
-
+    var filefirst=files[0].originalname;
+    var earss = filefirst.split(".");
+    var newnames = d.getTime() + "0"+ "." + earss[1];
     data.imgSrc =
-      "upload/product/" + req.params.id + "/" + files[0].originalname;
+      "upload/product/" + req.params.id + "/" + newnames;
     data.href =
       "product_detail.html?id=" + req.params.id + "&" + "type=" + req.body.type;
     data.imgList = fileInfos;
@@ -1387,31 +1422,29 @@ app.post("/api/v1/edit/:id", uploadMulti.array("img", 3), function(req, res) {
   }
 });
 
-
-
 // plan-list渲染
-app.get("/apiplan",function(req,res){
-  Plan.find(function(err,data){
-    if(err){
-      console.log(err)
-    }else{
-      res.render('plan-list',{
-        plan:data.map(function(item){
-          var plan = item.toObject()
-          return plan
+app.get("/apiplan", function(req, res) {
+  Plan.find(function(err, data) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.render("plan-list", {
+        plan: data.map(function(item) {
+          var plan = item.toObject();
+          return plan;
         }),
-        count:data.length
-      })
+        count: data.length
+      });
     }
-  })  
-})
+  });
+});
 // 方案添加
-app.post("/planadd",uploadMulti.single("img"),function(req,res){
-  var plan = Plan(req.body)
-  var years = (plan.date || "").split("-")
-  plan.year = years[0]
-  plan.month = years[1]
-  plan.day = years[2]
+app.post("/planadd", uploadMulti.single("img"), function(req, res) {
+  var plan = Plan(req.body);
+  var years = (plan.date || "").split("-");
+  plan.year = years[0];
+  plan.month = years[1];
+  plan.day = years[2];
   var file = req.file;
   var filename;
   filename = file.originalname;
@@ -1424,9 +1457,9 @@ app.post("/planadd",uploadMulti.single("img"),function(req,res){
     }
   });
   var id = plan.toObject()._id.toString();
-  plan.imgSrc = newname
-  plan.id = id
- plan.save(function(error) {
+  plan.imgSrc = newname;
+  plan.id = id;
+  plan.save(function(error) {
     if (error) {
       res.json({
         code: "error",
@@ -1439,28 +1472,28 @@ app.post("/planadd",uploadMulti.single("img"),function(req,res){
       });
     }
   });
-})
+});
 // 跳转到修改方案
-app.get("/updata/plan/:id",function(req,res){
+app.get("/updata/plan/:id", function(req, res) {
   Plan.findById(req.params.id, function(err, data) {
     if (err) {
       console.log(err);
     } else {
       var plan = data.toObject();
       res.render("plan-updata", {
-        plan:plan
+        plan: plan
       });
     }
   });
-})
+});
 // 上传方案修改
-app.post("/api/v5/edit/:id", uploadMulti.single("img"), function(req,res){
-  var data = req.body
-  console.log(data)
-  var years = data.date.split("-")
-  data.year = years[0]
-  data.month = years[1]
-  data.day = years[2]
+app.post("/api/v5/edit/:id", uploadMulti.single("img"), function(req, res) {
+  var data = req.body;
+  console.log(data);
+  var years = data.date.split("-");
+  data.year = years[0];
+  data.month = years[1];
+  data.day = years[2];
   var file = req.file;
   var filename;
   filename = file.originalname;
@@ -1479,9 +1512,9 @@ app.post("/api/v5/edit/:id", uploadMulti.single("img"), function(req,res){
       }
     });
   });
- Plan.findByIdAndUpdate(req.params.id, data, function(error) {
+  Plan.findByIdAndUpdate(req.params.id, data, function(error) {
     if (error) {
-      console.log(error)
+      console.log(error);
       res.json({
         code: "error",
         message: "修改失败"
@@ -1493,9 +1526,9 @@ app.post("/api/v5/edit/:id", uploadMulti.single("img"), function(req,res){
       });
     }
   });
-})
+});
 // 方案单个删除
-app.post('/delete/plan/:id',function(req,res){
+app.post("/delete/plan/:id", function(req, res) {
   Plan.findById(req.params.id, function(err, data) {
     fs.unlink("public/upload/slideshow/" + data.imgSrc, function(err) {
       if (err) {
@@ -1503,7 +1536,7 @@ app.post('/delete/plan/:id',function(req,res){
       }
     });
   });
-  Plan.findByIdAndRemove(req.params.id,function(err){
+  Plan.findByIdAndRemove(req.params.id, function(err) {
     if (err) {
       res.json({
         code: "error",
@@ -1515,12 +1548,12 @@ app.post('/delete/plan/:id',function(req,res){
         message: "删除数据成功"
       });
     }
-  })
-})
+  });
+});
 // 批量删除方案
-app.post("/deleteplan",function(req,res){
-  var id =req.body.checkedId.split(",");
-  for(let i in id){
+app.post("/deleteplan", function(req, res) {
+  var id = req.body.checkedId.split(",");
+  for (let i in id) {
     Plan.findById(id[i], function(err, data) {
       fs.unlink("public/upload/slideshow/" + data.imgSrc, function(err) {
         if (err) {
@@ -1528,55 +1561,54 @@ app.post("/deleteplan",function(req,res){
         }
       });
     });
-      Plan.findByIdAndRemove(id[i], function(err) {
-        if (err) {
-          console.log(err);
-        }
+    Plan.findByIdAndRemove(id[i], function(err) {
+      if (err) {
+        console.log(err);
+      }
     });
   }
   res.json({
     code: "success",
     message: "删除数据成功"
   });
-})
+});
 // 渲染planshow-list.html
-app.get("/apiplanshow",function(req,res){
-  Planshow.find(function(err,data){
-if(err){
-  console.log(err)
-}else{
-  res.render("planshow-list",{
-    plan:data.map(function(item){
-      var planshow = item.toObject()
-      return planshow
-    }),
-    count:data.length
-  })
-}
-  })
-})
-// 渲染planshow-add.html
-app.get("/planshowadd",function(req,res){
-  Plan.find(function(err,data){
-    if(err){
-      console.log(err)
-    }else{
-      res.render("planshow-add",{
-        plan:data.map(function(item){
-          var plan = item.toObject()
-          return plan
-        })
-
-      })
+app.get("/apiplanshow", function(req, res) {
+  Planshow.find(function(err, data) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.render("planshow-list", {
+        plan: data.map(function(item) {
+          var planshow = item.toObject();
+          return planshow;
+        }),
+        count: data.length
+      });
     }
-  })
-})
+  });
+});
+// 渲染planshow-add.html
+app.get("/planshowadd", function(req, res) {
+  Plan.find(function(err, data) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.render("planshow-add", {
+        plan: data.map(function(item) {
+          var plan = item.toObject();
+          return plan;
+        })
+      });
+    }
+  });
+});
 // 上传分类
-app.post("/api/planshowadd",function(req,res){
-  var planshow = Planshow(req.body)
-  var id = planshow.toObject()._id.toString()
-   planshow.id = id
-   planshow.save(function(error){
+app.post("/api/planshowadd", function(req, res) {
+  var planshow = Planshow(req.body);
+  var id = planshow.toObject()._id.toString();
+  planshow.id = id;
+  planshow.save(function(error) {
     if (error) {
       res.json({
         code: "error",
@@ -1588,37 +1620,37 @@ app.post("/api/planshowadd",function(req,res){
         message: "添加成功"
       });
     }
-   })
-})
+  });
+});
 // 跳转到修改方案分类
-app.get("/updata/planshow/:id",function(req,res){
+app.get("/updata/planshow/:id", function(req, res) {
   Planshow.findById(req.params.id, function(err, data) {
     if (err) {
       console.log(err);
     } else {
-      Plan.find(function(err,data1){
-        if(err){
-          console.log(err)
-        }else{
+      Plan.find(function(err, data1) {
+        if (err) {
+          console.log(err);
+        } else {
           var plan = data.toObject();
           res.render("planshow-updata", {
-            planone:plan,
-            plan:data1.map(function(item){
-              var ppp = item.toObject()
-              return ppp
+            planone: plan,
+            plan: data1.map(function(item) {
+              var ppp = item.toObject();
+              return ppp;
             })
           });
         }
-      })   
+      });
     }
   });
-})
+});
 // 上传修改分类
-app.post("/api/v6/edit/:id",function(req,res){
-  var data = req.body
-  Planshow.findByIdAndUpdate(req.params.id,data,function(error){
+app.post("/api/v6/edit/:id", function(req, res) {
+  var data = req.body;
+  Planshow.findByIdAndUpdate(req.params.id, data, function(error) {
     if (error) {
-      console.log(error)
+      console.log(error);
       res.json({
         code: "error",
         message: "修改失败"
@@ -1630,11 +1662,10 @@ app.post("/api/v6/edit/:id",function(req,res){
       });
     }
   });
-  })
+});
 //  删除单个分类
-app.post('/delete/planshow/:id',function(req,res){
- 
-  Planshow.findByIdAndRemove(req.params.id,function(err){
+app.post("/delete/planshow/:id", function(req, res) {
+  Planshow.findByIdAndRemove(req.params.id, function(err) {
     if (err) {
       res.json({
         code: "error",
@@ -1646,216 +1677,234 @@ app.post('/delete/planshow/:id',function(req,res){
         message: "删除数据成功"
       });
     }
-  })
-})
+  });
+});
 // 批量删除方案
-app.post("/deleteplanshow",function(req,res){
-  var id =req.body.checkedId.split(",");
-  for(let i in id){
-      Planshow.findByIdAndRemove(id[i], function(err) {
-        if (err) {
-          console.log(err);
-        }
+app.post("/deleteplanshow", function(req, res) {
+  var id = req.body.checkedId.split(",");
+  for (let i in id) {
+    Planshow.findByIdAndRemove(id[i], function(err) {
+      if (err) {
+        console.log(err);
+      }
     });
   }
   res.json({
     code: "success",
     message: "删除数据成功"
   });
-})
+});
 
 // 渲染plandetail-list.html
-app.get("/apiplandetail",function(req,res){
-  Plandetail.find(function(err,data){
-  if(err){
-    console.log(err)
-  }else{
-    res.render("plandetail-list",{
-      plan:data.map(function(item){
-        var plan = item.toObject()
-        return plan
-      }),
-      count:data.length
-    })
-  }
-  })
-  
-})
+app.get("/apiplandetail", function(req, res) {
+  Plandetail.find(function(err, data) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.render("plandetail-list", {
+        plan: data.map(function(item) {
+          var plan = item.toObject();
+          return plan;
+        }),
+        count: data.length
+      });
+    }
+  });
+});
 // 给plandetail-add和updata数据
-app.get("/detail",function(req,res){
-  Plan.find(function(err,data){
-    if(err){
-      console.log(err)
-    }else{
-      Planshow.find(function(err,data1){
-        if(err){
-          console.log(err)
-        }else{
+app.get("/detail", function(req, res) {
+  Plan.find(function(err, data) {
+    if (err) {
+      console.log(err);
+    } else {
+      Planshow.find(function(err, data1) {
+        if (err) {
+          console.log(err);
+        } else {
           res.json({
-            plan:data,
-            planshow:data1
-          })
+            plan: data,
+            planshow: data1
+          });
         }
-      })
+      });
     }
-  })
-})
+  });
+});
 
-var cpupload = uploadMulti.fields([{name:"imgSrcone",maxCount:1},{name:"imgSrctwo",maxCount:1},{name:"imgSrcthree",maxCount:1},])
+var cpupload = uploadMulti.fields([
+  { name: "imgSrcone", maxCount: 1 },
+  { name: "imgSrctwo", maxCount: 1 },
+  { name: "imgSrcthree", maxCount: 1 }
+]);
 // 上传数据
-app.post("/plandetailadd",cpupload,function(req,res){
-  var plandetail = Plandetail(req.body)
-var files = req.files
-var id = plandetail.toObject()._id.toString()
-fs.exists("public/upload/plandetail/" + id,function(exists){
-  if(exists){
-    for (var i in files ){
-      fs.rename(files[i][0].path,"public/upload/plandetail/" + id +files[i][0].originalname,function(err){
-        if(err){
-          throw err
-        }
-      })
-    }
-  }else{
-    fs.mkdir("public/upload/plandetail/"+id,function(err){
-      if(err){
-        console.log(err)
-      }else{
-        for (var i in files ){
-          fs.rename(files[i][0].path,"public/upload/plandetail/" + id +"/" +files[i][0].originalname,function(err){
-            if(err){
-              throw err
+app.post("/plandetailadd", cpupload, function(req, res) {
+  var plandetail = Plandetail(req.body);
+  var files = req.files;
+  var id = plandetail.toObject()._id.toString();
+  fs.exists("public/upload/plandetail/" + id, function(exists) {
+    if (exists) {
+      for (var i in files) {
+        fs.rename(
+          files[i][0].path,
+          "public/upload/plandetail/" + id + files[i][0].originalname,
+          function(err) {
+            if (err) {
+              throw err;
             }
-          })
-        }
-      }
-    })
-  }
-})
-var file0=files["imgSrcone"][0].originalname
-var file1=files["imgSrctwo"][0].originalname
-var file2=files["imgSrcthree"][0].originalname
-plandetail.id = id
-plandetail.imgSrcone = "/upload/plandetail/" + id +"/" +file0
-plandetail.imgSrctwo = "/upload/plandetail/" + id +"/" +file1
-plandetail.imgSrcthree = "/upload/plandetail/" + id +"/" +file2
-plandetail.save(function(error){
-  if (error) {
-    res.json({
-      code: "error",
-      message: "添加失败"
-    });
-  } else {
-    res.json({
-      code: "success",
-      message: "添加成功"
-    });
-  }
-})
-})
-// 跳转修改页面
-app.get("/updata/plandetail/:id",function(req,res){
-  Plandetail.findById(req.params.id,function(err,data){
-    if(err){
-      console.log(err)
-    }else{
-      var data1 = data.toObject()
-      res.render("plandetail-updata",{
-        plandetail:data1
-      })
-    }
-  })
-})
-// 上传修改
-app.post("/api/v7/edit/:id",cpupload,function(req,res){
-  var data =req.body
-  var files = req.files
-  for (var i in files ){
-    fs.rename(files[i][0].path,"public/upload/plandetail/" + req.params.id+"/" +files[i][0].originalname,function(err){
-      if(err){
-        throw err
-      }
-    })
-  }
-  var file0=files["imgSrcone"][0].originalname
-var file1=files["imgSrctwo"][0].originalname
-var file2=files["imgSrcthree"][0].originalname
-data.imgSrcone = "/upload/plandetail/" + req.params.id +"/" +file0
-data.imgSrctwo = "/upload/plandetail/" + req.params.id +"/" +file1
-data.imgSrcthree = "/upload/plandetail/" + req.params.id +"/" +file2
-Plandetail.findByIdAndUpdate(req.params.id,data,function(error){
-  if (error) {
-    console.log(error)
-    res.json({
-      code: "error",
-      message: "修改失败"
-    });
-  } else {
-    res.json({
-      code: "success",
-      message: "修改成功"
-    });
-  }
-})
-})
-// 单个删除
-app.post("/delete/plandetail/:id",function(req,res){
-    // 删除文件夹
-    function delFile(url) {
-      var data = fs.readdirSync(url);
-      for (var i = 0; i < data.length; i++) {
-        var path = url + "/" + data[i];
-        var stat = fs.statSync(path);
-        if (stat.isFile()) {
-          fs.unlinkSync(path);
-        } else {
-          delFile(path);
-        }
-      }
-      fs.rmdirSync(url);
-    }
-    Plandetail.findById(req.params.id, function(err, data) {
-      if (err) {
-        console.log(err);
-      } else {
-        fs.exists(`public/upload/plandetail/${req.params.id}`, function(exists) {
-          if (exists) {
-            delFile(`public/upload/plandetail/${req.params.id}`); //删除文件夹
           }
-        });
+        );
       }
-    });
-   Plandetail.findByIdAndRemove(req.params.id, function(err) {
-      if (err) {
-        res.json({
-          code: "error",
-          message: "删除数据失败"
-        });
-      } else {
-        res.json({
-          code: "success",
-          message: "删除数据成功"
-        });
-      }
-    });
-})
-// 批量删除
-app.post("/deleteplandetail",function(req,res){
-  var id =req.body.checkedId.split(",");
-  function delFile(url) {
-      var data = fs.readdirSync(url);
-      for (var i = 0; i < data.length; i++) {
-        var path = url + "/" + data[i];
-        var stat = fs.statSync(path);
-        if (stat.isFile()) {
-          fs.unlinkSync(path);
+    } else {
+      fs.mkdir("public/upload/plandetail/" + id, function(err) {
+        if (err) {
+          console.log(err);
         } else {
-          delFile(path);
+          for (var i in files) {
+            fs.rename(
+              files[i][0].path,
+              "public/upload/plandetail/" + id + "/" + files[i][0].originalname,
+              function(err) {
+                if (err) {
+                  throw err;
+                }
+              }
+            );
+          }
+        }
+      });
+    }
+  });
+  var file0 = files["imgSrcone"][0].originalname;
+  var file1 = files["imgSrctwo"][0].originalname;
+  var file2 = files["imgSrcthree"][0].originalname;
+  plandetail.id = id;
+  plandetail.imgSrcone = "/upload/plandetail/" + id + "/" + file0;
+  plandetail.imgSrctwo = "/upload/plandetail/" + id + "/" + file1;
+  plandetail.imgSrcthree = "/upload/plandetail/" + id + "/" + file2;
+  plandetail.save(function(error) {
+    if (error) {
+      res.json({
+        code: "error",
+        message: "添加失败"
+      });
+    } else {
+      res.json({
+        code: "success",
+        message: "添加成功"
+      });
+    }
+  });
+});
+// 跳转修改页面
+app.get("/updata/plandetail/:id", function(req, res) {
+  Plandetail.findById(req.params.id, function(err, data) {
+    if (err) {
+      console.log(err);
+    } else {
+      var data1 = data.toObject();
+      res.render("plandetail-updata", {
+        plandetail: data1
+      });
+    }
+  });
+});
+// 上传修改
+app.post("/api/v7/edit/:id", cpupload, function(req, res) {
+  var data = req.body;
+  var files = req.files;
+  for (var i in files) {
+    fs.rename(
+      files[i][0].path,
+      "public/upload/plandetail/" +
+        req.params.id +
+        "/" +
+        files[i][0].originalname,
+      function(err) {
+        if (err) {
+          throw err;
         }
       }
-      fs.rmdirSync(url);
+    );
+  }
+  var file0 = files["imgSrcone"][0].originalname;
+  var file1 = files["imgSrctwo"][0].originalname;
+  var file2 = files["imgSrcthree"][0].originalname;
+  data.imgSrcone = "/upload/plandetail/" + req.params.id + "/" + file0;
+  data.imgSrctwo = "/upload/plandetail/" + req.params.id + "/" + file1;
+  data.imgSrcthree = "/upload/plandetail/" + req.params.id + "/" + file2;
+  Plandetail.findByIdAndUpdate(req.params.id, data, function(error) {
+    if (error) {
+      console.log(error);
+      res.json({
+        code: "error",
+        message: "修改失败"
+      });
+    } else {
+      res.json({
+        code: "success",
+        message: "修改成功"
+      });
     }
-  for(let i in id){
+  });
+});
+// 单个删除
+app.post("/delete/plandetail/:id", function(req, res) {
+  // 删除文件夹
+  function delFile(url) {
+    var data = fs.readdirSync(url);
+    for (var i = 0; i < data.length; i++) {
+      var path = url + "/" + data[i];
+      var stat = fs.statSync(path);
+      if (stat.isFile()) {
+        fs.unlinkSync(path);
+      } else {
+        delFile(path);
+      }
+    }
+    fs.rmdirSync(url);
+  }
+  Plandetail.findById(req.params.id, function(err, data) {
+    if (err) {
+      console.log(err);
+    } else {
+      fs.exists(`public/upload/plandetail/${req.params.id}`, function(exists) {
+        if (exists) {
+          delFile(`public/upload/plandetail/${req.params.id}`); //删除文件夹
+        }
+      });
+    }
+  });
+  Plandetail.findByIdAndRemove(req.params.id, function(err) {
+    if (err) {
+      res.json({
+        code: "error",
+        message: "删除数据失败"
+      });
+    } else {
+      res.json({
+        code: "success",
+        message: "删除数据成功"
+      });
+    }
+  });
+});
+// 批量删除
+app.post("/deleteplandetail", function(req, res) {
+  var id = req.body.checkedId.split(",");
+  function delFile(url) {
+    var data = fs.readdirSync(url);
+    for (var i = 0; i < data.length; i++) {
+      var path = url + "/" + data[i];
+      var stat = fs.statSync(path);
+      if (stat.isFile()) {
+        fs.unlinkSync(path);
+      } else {
+        delFile(path);
+      }
+    }
+    fs.rmdirSync(url);
+  }
+  for (let i in id) {
     Plandetail.findById(id[i], function(err, data) {
       if (err) {
         console.log(err);
@@ -1867,21 +1916,20 @@ app.post("/deleteplandetail",function(req,res){
         });
       }
     });
-   Plandetail.findByIdAndRemove(id[i], function(err) {
+    Plandetail.findByIdAndRemove(id[i], function(err) {
       if (err) {
         res.json({
           code: "error",
           message: "删除数据失败"
         });
-      } 
+      }
     });
-
-}
-res.json({
-  code: "success",
-  message: "删除数据成功"
+  }
+  res.json({
+    code: "success",
+    message: "删除数据成功"
+  });
 });
-})
 // 退出
 app.get("/logout", function(req, res) {
   req.session.userName = null; // 删除session
