@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="1921956f-0dbb-4e99-975d-95140a67d2c4" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/bizScript/constants.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/bizScript/constants.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/ueditor/1055637778378919936.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/ueditor/1055641314370129920.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/ueditor/1055736417981960192.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/ueditor/1056742947564949504.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/ueditor/1056746385988259840.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/ueditor/1056750713591435264.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/ueditor/1056756324643246080.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/ueditor/1056756546337378304.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/ueditor/1056757578937274368.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/ueditor/1056783753944371200.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/ueditor/1056786792784728064.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/ueditor/1056786899571707904.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/ueditor/1057094628718809088.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/ueditor/1057148110372999168.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/ueditor/1057148443581091840.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/ueditor/1057160059701825536.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/ueditor/1059606320275132416.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/upload/case/1540954797840.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/upload/case/1541464858394.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/upload/case/1541464901551.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/upload/case/1541574274426.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/upload/news/1540954886061.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/upload/news/1540954912123.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/upload/news/1540954924154.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/upload/news/1540970302186.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/upload/news/1540970317302.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/upload/news/1540970328761.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/upload/news/1541464938344.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/upload/plan/1541143927697.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/upload/plan/1541143983381.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/upload/plan/1541144009613.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/upload/plan/1541144028974.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/upload/plan/1541465056249.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/upload/plandetail/5bdeb43d70dbc51cc0337967/1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/upload/plandetail/5bdeb43d70dbc51cc0337967/2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/upload/plandetail/5bdeb43d70dbc51cc0337967/3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/upload/plandetail/5be0e414e60ad01a787c39a9/case-pic1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/upload/plandetail/5be0e414e60ad01a787c39a9/case-pic2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/upload/plandetail/5be0e414e60ad01a787c39a9/case-pic3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/upload/plandetail/5be0e517e6dbf11a744ca9a6/case-pic1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/upload/plandetail/5be0e517e6dbf11a744ca9a6/case-pic2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/upload/plandetail/5be0e517e6dbf11a744ca9a6/case-pic3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/upload/product/5bd2bd71e937cf2afc4dd01a/2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/upload/product/5bd2beadee48ba286ce329b0/2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/upload/product/5bd2beadee48ba286ce329b0/3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/upload/product/5bd2ce78dcc0a91c9c87bb8c/1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/upload/product/5bd2ce78dcc0a91c9c87bb8c/2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/upload/product/5bd2ce78dcc0a91c9c87bb8c/3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/upload/product/5bd2ce78dcc0a91c9c87bb8c/banner.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/upload/product/5bd2ce78dcc0a91c9c87bb8c/banner1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/upload/product/5bd6a0e17e96d51de84f9705/2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/upload/product/5bd6a0e17e96d51de84f9705/3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/upload/product/5bd6a1087e96d51de84f9706/2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/upload/product/5bd6a1087e96d51de84f9706/3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/upload/product/5bd6a12f7e96d51de84f9707/2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/upload/product/5bd6a12f7e96d51de84f9707/3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/upload/product/5be672928cccfd0f7c145596/15418292665280.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/upload/product/5be672928cccfd0f7c145596/15418292665281.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/upload/product/5be672928cccfd0f7c145596/15418292665282.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/upload/product/5be6729a8cccfd0f7c145597/15418292741790.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/upload/product/5be6729a8cccfd0f7c145597/15418292741791.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/upload/product/5be6729a8cccfd0f7c145597/15418292741792.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/upload/product/5be6729a8cccfd0f7c145598/15418292743530.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/upload/product/5be6729a8cccfd0f7c145598/15418292743531.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/upload/product/5be6729a8cccfd0f7c145598/15418292743532.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/upload/slideshow/1540541584134.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/upload/slideshow/1541130245584.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/upload/slideshow/1541464976869.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/index.html" afterDir="false" />
+    </list>
+    <ignored path="$PROJECT_DIR$/.tmp/" />
+    <ignored path="$PROJECT_DIR$/temp/" />
+    <ignored path="$PROJECT_DIR$/tmp/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="289">
+              <caret line="13" column="8" selection-start-line="13" selection-start-column="8" selection-end-line="13" selection-end-column="8" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="260" />
+    <option name="y" value="20" />
+    <option name="width" value="1400" />
+    <option name="height" value="1000" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="newapp" type="b2602c69:ProjectViewProjectNode" />
+              <item name="newapp" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="reference.settings.ide.settings.spelling" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="1921956f-0dbb-4e99-975d-95140a67d2c4" name="Default Changelist" comment="" />
+      <created>1551843540257</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1551843540257</updated>
+      <workItem from="1551843542908" duration="603000" />
+      <workItem from="1551844160394" duration="88000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="691000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17913593" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="npm" order="2" side_tool="true" />
+      <window_info id="Favorites" order="3" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" />
+      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
+      <window_info anchor="bottom" id="Terminal" order="10" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="13" column="8" selection-start-line="13" selection-start-column="8" selection-end-line="13" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

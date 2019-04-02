@@ -84,21 +84,22 @@ var menuList = [{
     "target": "_self",
     "type": 0
 }];
-var productList = (function(){
-    var result
-    var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function (e) {
-      // 判断状态
-      if (xhr.readyState == 4) {
-          // console.log(xhr.response)
-          var res = JSON.parse(xhr.response)
-          // console.dir(res)  // 拼接数据在页面显示
-        //   console.log(res.list)
-        result = res.list
-      }
-  }
 
-  xhr.open('get','http://localhost:3000/api/v1/productlist',false);
-  xhr.send()
-  return result
-})()
+// var productList = (function(){
+//     var result
+//     var xhr = new XMLHttpRequest();
+//     xhr.onreadystatechange = function (e) {
+//       // 判断状态
+//       if (xhr.readyState == 4) {
+//           // console.log(xhr.response)
+//           var res = JSON.parse(xhr.response)
+//           // console.dir(res)  // 拼接数据在页面显示
+//         //   console.log(res.list)
+//         result = res.list
+//       }
+//   }
+
+//   xhr.open('get','http://localhost:3000/api/v1/productlist',false);
+//   xhr.send()
+//   return result
+// })()

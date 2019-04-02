@@ -280,6 +280,7 @@ app.get("/api/v1/productlist", function(req, res) {
     } else {
       // console.log(data)
       res.json({
+        sliders:true,
         list: data.map(function(item) {
           var product = item.toObject();
           return product;

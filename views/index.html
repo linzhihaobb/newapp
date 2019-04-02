@@ -1,250 +1,263 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 
-	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-		<meta name="keywords" content="">
-		<meta name="description" content="">
-		<link rel="stylesheet" type="text/css" href="/css/lib.css">
-		<link rel="stylesheet" type="text/css" href="/css/base.css">
-		<link rel="stylesheet" type="text/css" href="/css/style.css">
-		<script type="text/javascript" src="/js/jquery-1.11.3.min.js"></script>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="keywords" content="">
+  <meta name="description" content="">
+  <link rel="stylesheet" type="text/css" href="/css/lib.css">
+  <link rel="stylesheet" type="text/css" href="/css/base.css">
+  <link rel="stylesheet" type="text/css" href="/css/style.css">
+  <script type="text/javascript" src="/js/jquery-1.11.3.min.js"></script>
 
-		<script>
-			$(function() {
-				if(!$("#mindex").length) {
-					$('body').addClass('sscreen');
-				}
-			})
-		</script>
-		<script type="text/javascript" src="/js/org.min.js" data-main="indexMain"></script>
-		<script type="text/javascript" src="/js/form.min.js"></script>
-		<script type="text/javascript" src="/js/vue.min.js"></script>
-		<script type="text/javascript" src="/bizScript/footer.js"></script>
-		<script type="text/javascript" src="/bizScript/header.js"></script>
-		<script type="text/javascript" src="/bizScript/productList.js"></script>
-		<script type="text/javascript" src="/bizScript/constants.js"></script>
-		<title>兴业知书达人首页</title>
+  <script>
+    $(function () {
+      if (!$("#mindex").length) {
+        $('body').addClass('sscreen');
+      }
+    })
+  </script>
+  <script type="text/javascript" src="/js/org.min.js" data-main="indexMain"></script>
+  <script type="text/javascript" src="/js/form.min.js"></script>
+  <script type="text/javascript" src="/js/vue.min.js"></script>
+  <script type="text/javascript" src="/bizScript/footer.js"></script>
+  <script type="text/javascript" src="/bizScript/header.js"></script>
+  <script type="text/javascript" src="/bizScript/productList.js"></script>
+  <script type="text/javascript" src="/bizScript/constants.js"></script>
+  <title>兴业知书达人首页</title>
 
-	</head>
+</head>
 
-	<body>
-	<div id="app">
-		<div class="bodyMask"> </div>
-		<side-header :menuList="menuList"></side-header>
-		<div id="header" class="index_nav">
+<body>
+  <div id="app">
+    <div class="bodyMask"> </div>
+    <side-header :menuList="menuList"></side-header>
+    <div id="header" class="index_nav">
 
-			<div class="content">
-				<a href="/" id="logo"><img src="/images/logo.png" height="60" /></a>
-				<ul id="nav">
-				<menu-item :item="item" :index="index" v-for="(item, index) in menuList"></menu-item>
-				</ul>
-				<div class="clear"></div>
-			</div>
-			<a id="headSHBtn" href="#"><i class="fa fa-bars"></i></a>
-		</div>
-		<div id="sitecontent">
-			<div id="indexPage">
-				<div id="mslider" class="module">
-					<ul class="slider" data-options-height="650" data-options-auto="1" data-options-mode="0" data-options-pause="4" data-options-ease="ease-out">
-                  {{each list show index}}
-						<li style="background-image:url(/upload/slideshow/{{show.link}})">
-							<div id="tempImage_{{index}}"></div>
-							<img style="display:none" src="/upload/slideshow/{{show.link}}" alt="" />
-							<a target="_blank">
-								<div>
-									<p class="title ellipsis"></p>
-								</div>
-								<div class="sliderArrow fa fa-angle-down"></div>
-							</a>
-						</li>
-						{{/each}}
-						<!-- <li style="background-image:url(/images/banner1.jpg)"> -->
-							<!-- <div id="tempImage_1"></div><img style="display:none" src="/images/banner1.jpg" alt="" />
+      <div class="content">
+        <a href="/" id="logo"><img src="/images/logo.png" height="60" /></a>
+        <ul id="nav">
+          <menu-item :item="item" :index="index" v-for="(item, index) in menuList"></menu-item>
+        </ul>
+        <div class="clear"></div>
+      </div>
+      <a id="headSHBtn" href="#"><i class="fa fa-bars"></i></a>
+    </div>
+    <div id="sitecontent">
+      <div id="indexPage">
+        <div id="mslider" class="module">
+          <ul class="slider" data-options-height="650" data-options-auto="1" data-options-mode="0" data-options-pause="4"
+            data-options-ease="ease-out">
+            {{each list show index}}
+            <li style="background-image:url(/upload/slideshow/{{show.link}})">
+              <div id="tempImage_{{index}}"></div>
+              <img style="display:none" src="/upload/slideshow/{{show.link}}" alt="" />
+              <a target="_blank">
+                <div>
+                  <p class="title ellipsis"></p>
+                </div>
+                <div class="sliderArrow fa fa-angle-down"></div>
+              </a>
+            </li>
+            {{/each}}
+            <!-- <li style="background-image:url(/images/banner1.jpg)"> -->
+            <!-- <div id="tempImage_1"></div><img style="display:none" src="/images/banner1.jpg" alt="" />
 							<a target="_blank">
 								<div>
 									<p class="title ellipsis"></p>
 								</div>
 								<div class="sliderArrow fa fa-angle-down"></div>
 							</a> -->
-						<!-- </li> -->
-					</ul>
-				</div>
-				<div id="mindex" data-options-ease="Expo.easeInOut" data-options-speed="1" data-options-sscreen="0"></div>
-				<div id="mservice" class="module">
-					<div class="content layoutnone">
-						<div class="header wow fw" data-wow-delay=".1s">
-							<p class="title">方案展示</p>
-							<p class="subtitle">Plan</p>
-						</div>
-						<div class="module-content fw" id="servicelist">
-							<div class="wrapper">
-								<ul class="content_list" data-options-sliders="3" data-options-margin="0" data-options-ease="1" data-options-speed="1">
-									{{each plan planlist index}}
-									<li id="serviceitem_{{index}}" class="serviceitem wow">
-										<a href="/plan" target="_blank">
-											<p class="service_img"><img src="/upload/plan/{{planlist.imgSrc}}" width="320" height="120" alt="智慧教室" /></p>
-											<div class="service_info">
-												<p class="title">{{planlist.title}}</p>
-												<p class="description">{{planlist.remark}}</p>
-											</div>
-										</a>
-										<a href="/plan" target="_blank" class="details">more<i class="fa fa-angle-right"></i></a>
-									</li>
-									{{/each}}
-								</ul>
-							</div>
-						</div>
-						<div class="clear"></div>
-						<a href="/plan" class="more wow">MORE<i class="fa fa-angle-right"></i></a>
-					</div>
-				</div>
-				<div id="mproject" class="module">
-					<div class="content layoutnone">
-						<div class="header wow">
-							<p class="title">产品展示</p>
-							<p class="subtitle">Product</p>
-						</div>
-						<div id="category" class="hide wow">
-							<a href="/products?type=yjcp&page=1">交互智能</a>
-							<a href="/products?type=yyrj&page=1">应用软件</a>
-							<a href="/products?type=zbcp&page=1">周边产品</a>
-						</div>
-						<!--yyLayout masonry-->
-						<div class="module-content" id="projectlist">
-							<div class="projectSubList" id="projectSubList_">
-								<div class="projectSubHeader">
-									<p class="title"></p>
-									<p class="subtitle"></p>
-								</div>
-								<product-list :product="product"></product-list>
-								<!--wrapper-->
-							</div>
-							<!--projectSubList-->
-							<div class="clear"></div>
-							<a href="/products?type=all&page=1" class="more wow">MORE<i class="fa fa-angle-right"></i></a>
-						</div>
-						<!--projectlist-->
-						<div class="clear"></div>
-					</div>
-				</div>
-				<!--project-->
-				<div id="mpage" class="module bgShow" style="background-image:url(/images/case-bj.jpg);">
-					<div class="bgmask"></div>
-					<div class="content">
-						<div class="module-content">
-							<div class="wrapper">
-								<ul class="slider one">
-									<li>
-										<div class="header wow" data-wow-delay=".2s">
-											<p class="title">优秀案例故事</p>
-											<p class="subtitle">Excellent Case Story</p>
-										</div>
-										<div class="des-wrap">
-											<p class="description wow" data-wow-delay=".3s">活跃的课堂氛围更容易使学生对学习产生兴趣，进而提高教学质量。课上开启班级优化大师置顶光荣榜，可即时对学生的课堂行为进行评价，名次在排行榜上即时刷新，能很好帮助激发学生好胜心；随机抽选功能让每位同学都可能被抽到，促使全班同学随时保持专注。课堂上抽选小组，小组成员必须轮流上台答题，分数最高的同学将成为本周的小组长...
-											</p>
-										</div>
-										<a href="javascript:void(0)" class="more wow" data-wow-delay=".5s">MORE<i class="fa fa-angle-right"></i></a>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div id="mnews" class="module bgShow">
-					<div class="bgmask"></div>
-					<div class="content layoutnone">
-						<div class="header wow">
-							<p class="title">达人动态</p>
-							<p class="subtitle">NEWS</p>
-						</div>
-						<div class="module-content" id="newslist">
-							<div class="wrapper">
-								<ul class="content_list" data-options-sliders="5" data-options-margin="40" data-options-ease="1" data-options-speed="0.5" data-options-mode="horizontal" data-options-wheel="0">
-									{{each newsshow newslist index}}
-									{{if index==0}}
-									<li id="newsitem_{{index}}" class="wow newstitem left">
-										<a class="newscontent" target="_blank" href="/api/news/{{newslist.id}}">
-											<div class="news_wrapper">
-												<div class="newsbody">
-													<p class="date"><span class="md">{{newslist.year}}<span>-</span></span><span class="year">{{newslist.month}}-{{newslist.day}}</span></p>
-													<p class="title">{{newslist.title}}</p>
-													<div class="separator"></div>
-													<p class="description">{{newslist.remark}}</p>
-												</div>
-											</div>
-											<div class="newsimg" style="background-image:url(/upload/news/{{newslist.imgSrc}})"></div>
-										</a>
-										<a href="#" target="_blank" class="details">more<i class="fa fa-angle-right"></i></a>
-									</li>
-									{{else}}
-									<li id="newsitem_{{index}}" class="wow newstitem right">
-										<a class="newscontent" target="_blank" href="/api/news/{{newslist.id}}">
-											<div class="news_wrapper">
-												<div class="newsbody">
-														<p class="date"><span class="md">{{newslist.year}}<span>-</span></span><span class="year">{{newslist.month}}-{{newslist.day}}</span></p>
-													<p class="title">{{newslist.title}}</p>
-													<div class="separator"></div>
-													<p class="description">{{newslist.remark}}</p>
-												</div>
-											</div>
-										</a>
-										<a href="#" target="_blank" class="details">more<i class="fa fa-angle-right"></i></a>
-									</li>
-									{{/if}}
-									{{/each}}
-								</ul>
-							</div>
-						</div>
-						<div class="clear"></div>
-						<a href="/news/1" class="more wow">MORE<i class="fa fa-angle-right"></i></a>
-						<div style="height:0">&nbsp;</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- 底部区域 -->
-		<side-footer :footer="footer"></side-footer>
-	</div>
+            <!-- </li> -->
+          </ul>
+        </div>
+        <div id="mindex" data-options-ease="Expo.easeInOut" data-options-speed="1" data-options-sscreen="0"></div>
+        <div id="mservice" class="module">
+          <div class="content layoutnone">
+            <div class="header wow fw" data-wow-delay=".1s">
+              <p class="title">方案展示</p>
+              <p class="subtitle">Plan</p>
+            </div>
+            <div class="module-content fw" id="servicelist">
+              <div class="wrapper">
+                <ul class="content_list" data-options-sliders="3" data-options-margin="0" data-options-ease="1"
+                  data-options-speed="1">
+                  {{each plan planlist index}}
+                  <li id="serviceitem_{{index}}" class="serviceitem wow">
+                    <a href="/plan" target="_blank">
+                      <p class="service_img"><img src="/upload/plan/{{planlist.imgSrc}}" width="320" height="120" alt="智慧教室" /></p>
+                      <div class="service_info">
+                        <p class="title">{{planlist.title}}</p>
+                        <p class="description">{{planlist.remark}}</p>
+                      </div>
+                    </a>
+                    <a href="/plan" target="_blank" class="details">more<i class="fa fa-angle-right"></i></a>
+                  </li>
+                  {{/each}}
+                </ul>
+              </div>
+            </div>
+            <div class="clear"></div>
+            <a href="/plan" class="more wow">MORE<i class="fa fa-angle-right"></i></a>
+          </div>
+        </div>
+        <div id="mproject" class="module">
+          <div class="content layoutnone">
+            <div class="header wow">
+              <p class="title">产品展示</p>
+              <p class="subtitle">Product</p>
+            </div>
+            <div id="category" class="hide wow">
+              <a href="/products?type=yjcp&page=1">交互智能</a>
+              <a href="/products?type=yyrj&page=1">应用软件</a>
+              <a href="/products?type=zbcp&page=1">周边产品</a>
+            </div>
+            <!--yyLayout masonry-->
+            <div class="module-content" id="projectlist">
+              <div class="projectSubList" id="projectSubList_">
+                <div class="projectSubHeader">
+                  <p class="title"></p>
+                  <p class="subtitle"></p>
+                </div>
+                <product-list :product="product"></product-list>
+                <!--wrapper-->
+              </div>
+              <!--projectSubList-->
+              <div class="clear"></div>
+              <a href="/products?type=all&page=1" class="more wow">MORE<i class="fa fa-angle-right"></i></a>
+            </div>
+            <!--projectlist-->
+            <div class="clear"></div>
+          </div>
+        </div>
+        <!--project-->
+        <div id="mpage" class="module bgShow" style="background-image:url(/images/case-bj.jpg);">
+          <div class="bgmask"></div>
+          <div class="content">
+            <div class="module-content">
+              <div class="wrapper">
+                <ul class="slider one">
+                  <li>
+                    <div class="header wow" data-wow-delay=".2s">
+                      <p class="title">优秀案例故事</p>
+                      <p class="subtitle">Excellent Case Story</p>
+                    </div>
+                    <div class="des-wrap">
+                      <p class="description wow" data-wow-delay=".3s">活跃的课堂氛围更容易使学生对学习产生兴趣，进而提高教学质量。课上开启班级优化大师置顶光荣榜，可即时对学生的课堂行为进行评价，名次在排行榜上即时刷新，能很好帮助激发学生好胜心；随机抽选功能让每位同学都可能被抽到，促使全班同学随时保持专注。课堂上抽选小组，小组成员必须轮流上台答题，分数最高的同学将成为本周的小组长...
+                      </p>
+                    </div>
+                    <a href="javascript:void(0)" class="more wow" data-wow-delay=".5s">MORE<i class="fa fa-angle-right"></i></a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="mnews" class="module bgShow">
+          <div class="bgmask"></div>
+          <div class="content layoutnone">
+            <div class="header wow">
+              <p class="title">达人动态</p>
+              <p class="subtitle">NEWS</p>
+            </div>
+            <div class="module-content" id="newslist">
+              <div class="wrapper">
+                <ul class="content_list" data-options-sliders="5" data-options-margin="40" data-options-ease="1"
+                  data-options-speed="0.5" data-options-mode="horizontal" data-options-wheel="0">
+                  {{each newsshow newslist index}}
+                  {{if index==0}}
+                  <li id="newsitem_{{index}}" class="wow newstitem left">
+                    <a class="newscontent" target="_blank" href="/api/news/{{newslist.id}}">
+                      <div class="news_wrapper">
+                        <div class="newsbody">
+                          <p class="date"><span class="md">{{newslist.year}}<span>-</span></span><span class="year">{{newslist.month}}-{{newslist.day}}</span></p>
+                          <p class="title">{{newslist.title}}</p>
+                          <div class="separator"></div>
+                          <p class="description">{{newslist.remark}}</p>
+                        </div>
+                      </div>
+                      <div class="newsimg" style="background-image:url(/upload/news/{{newslist.imgSrc}})"></div>
+                    </a>
+                    <a href="#" target="_blank" class="details">more<i class="fa fa-angle-right"></i></a>
+                  </li>
+                  {{else}}
+                  <li id="newsitem_{{index}}" class="wow newstitem right">
+                    <a class="newscontent" target="_blank" href="/api/news/{{newslist.id}}">
+                      <div class="news_wrapper">
+                        <div class="newsbody">
+                          <p class="date"><span class="md">{{newslist.year}}<span>-</span></span><span class="year">{{newslist.month}}-{{newslist.day}}</span></p>
+                          <p class="title">{{newslist.title}}</p>
+                          <div class="separator"></div>
+                          <p class="description">{{newslist.remark}}</p>
+                        </div>
+                      </div>
+                    </a>
+                    <a href="#" target="_blank" class="details">more<i class="fa fa-angle-right"></i></a>
+                  </li>
+                  {{/if}}
+                  {{/each}}
+                </ul>
+              </div>
+            </div>
+            <div class="clear"></div>
+            <a href="/news/1" class="more wow">MORE<i class="fa fa-angle-right"></i></a>
+            <div style="height:0">&nbsp;</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- 底部区域 -->
+    <side-footer :footer="footer"></side-footer>
+  </div>
 
-	<!-- <script type="text/javascript">
+  <!-- <script type="text/javascript">
 		$(function() {
 			$("#mslider li video").each(function(index, element) {
 				element.play();
 			});
 		})
 	</script> -->
-	<script>
-			var vm = new Vue({
-				el:'#app',
-				components: {
-					'side-footer': footDiv,
-					'menu-item': menuItem
-				  },
-				  data : {
-					  footer:{
-						  'corpname':FOOTER.CORPNAME,
-						  'qqcode':FOOTER.QQCODE,
-						  'telno':FOOTER.TELNO,
-						  'corpaddress':FOOTER.CORPADDRESS,
-						  'zipcode':FOOTER.ZIPCODE,
-						  'mobileno':FOOTER.MOBILENO,
-						  'faxno':FOOTER.FAXNO,
-						  'corpemail':FOOTER.CORPEMAIL,
-						  'sideauthor':FOOTER.SIDEAUTHOR,
-						  'siderecord':FOOTER.SIDERECORD
-					  },
-					  menuList:menuList,
-					  product:{
-						  'sliders':true,
-						  'list':productList
-					  }
-				  }
-			})
-	
-		</script>
-	</body>
+  <script>
+    var vm = new Vue({
+      el: '#app',
+      components: {
+        'side-footer': footDiv,
+        'menu-item': menuItem
+      },
+      data: {
+        footer: {
+          'corpname': FOOTER.CORPNAME,
+          'qqcode': FOOTER.QQCODE,
+          'telno': FOOTER.TELNO,
+          'corpaddress': FOOTER.CORPADDRESS,
+          'zipcode': FOOTER.ZIPCODE,
+          'mobileno': FOOTER.MOBILENO,
+          'faxno': FOOTER.FAXNO,
+          'corpemail': FOOTER.CORPEMAIL,
+          'sideauthor': FOOTER.SIDEAUTHOR,
+          'siderecord': FOOTER.SIDERECORD
+        },
+        menuList: menuList,
+        product: {}
+      },
+      methods: {
+        getData() {
+          var _this=this
+         $.get('http://localhost:3000/api/v1/productlist').then(function (res) {       
+           _this.product=res
+          })
+        console.log(_this.footer)
+        }
+      },
+      created() {
+        this.getData();
+      },
+      mounted() {
+      }
+    })
+  </script>
+</body>
 
-	
+
 </html>
