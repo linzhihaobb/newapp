@@ -1936,6 +1936,6 @@ app.get("/logout", function(req, res) {
   req.session.userName = null; // 删除session
   res.redirect("/");
 });
-app.listen(3000, function() {
-  console.log("http://localhost:3000");
+app.listen(8080, function() {
+  console.log("http://localhost:8080");
 });
