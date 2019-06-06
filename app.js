@@ -1936,6 +1936,6 @@ app.get("/logout", function(req, res) {
   req.session.userName = null; // 删除session
   res.redirect("/");
 });
-app.listen(8080, function() {
-  console.log("http://localhost:8080");
+app.listen(80, function() {
+  console.log("http://www.linzhihao.xyz");
 });

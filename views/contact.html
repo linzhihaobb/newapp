@@ -170,7 +170,7 @@
         }
         function createMap(){
             map = new BMap.Map("map");
-            map.centerAndZoom(new BMap.Point(117.6205330117,24.5333626676),17);
+            map.centerAndZoom(new BMap.Point(117.641058, 24.568892),17);
         }
         function setMapEvent(){
             map.enableScrollWheelZoom();
@@ -185,7 +185,7 @@
         }
         function addMapOverlay(){
             var markers = [
-                {content:"漳州兴业知书达人自动化办公设备有限公司",title:"漳州兴业知书达人自动化办公设备有限公司",imageOffset: {width:0,height:3},position:{lat:24.5333626676,lng:117.6205330117}}
+                {content:"漳州兴业知书达人自动化办公设备有限公司",title:"漳州兴业知书达人自动化办公设备有限公司",imageOffset: {width:0,height:3},position:{lat:24.568892,lng:117.641058}}
             ];
             for(var index = 0; index < markers.length; index++ ){
                 var point = new BMap.Point(markers[index].position.lng,markers[index].position.lat);

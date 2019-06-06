@@ -111,7 +111,7 @@ var id = (function GetRequest() {
       }
   }
  
-  xhr.open('get','http://localhost:3000/api/v2/productlist?id='+id.id +"&type="+id.type,false);
+  xhr.open('get','http://localhost/api/v2/productlist?id='+id.id +"&type="+id.type,false);
   xhr.send()
   return result
 })()
@@ -128,7 +128,7 @@ var productorData = (function(){
           result = res.list
         }
     }
-    xhr.open('get','http://localhost:3000/api/v1/productorData?id='+id.id,false);
+    xhr.open('get','http://localhost/api/v1/productorData?id='+id.id,false);
     xhr.send()
     return result
 })()

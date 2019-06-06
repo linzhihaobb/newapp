@@ -112,7 +112,7 @@ var productList = (function () {
             result = res.list
         }
     }
-    xhr.open('get', 'http://localhost:3000/api/v1/productData?type=' + id.type +"&page=" +id.page , false);
+    xhr.open('get', 'http://localhost/api/v1/productData?type=' + id.type +"&page=" +id.page , false);
     xhr.send()
     return result
 })()
@@ -129,7 +129,7 @@ var pagecount = (function () {
             result = res.list
         }
     }
-    xhr.open('get', 'http://localhost:3000/api/v1/pagecount?type=' + id.type +"&page=" +id.page , false);
+    xhr.open('get', 'http://localhost/api/v1/pagecount?type=' + id.type +"&page=" +id.page , false);
     xhr.send()
     return result
 })()
