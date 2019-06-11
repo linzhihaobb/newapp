@@ -1,5 +1,5 @@
 var FOOTER = {};
-FOOTER.CORPNAME = "漳州市兴业电脑有限公司";
+FOOTER.CORPNAME = "漳州知书达人自动化办公设备有限公司";
 FOOTER.QQCODE = "513453932";
 FOOTER.TELNO = "262-1009";
 FOOTER.CORPADDRESS = "漳州市芗城区金峰工业园区蔡前村550号";
